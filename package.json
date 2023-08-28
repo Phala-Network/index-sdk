@@ -1,0 +1,24 @@
+{
+  "name": "@phala/index",
+  "version": "1.0.0",
+  "description": "inDEX JavaScript SDK",
+  "license": "MIT",
+  "author": "Phala Network Team",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig.cjs.json"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts": "^18.12.5",
+    "typescript": "^5.2.2"
+  }
+}
