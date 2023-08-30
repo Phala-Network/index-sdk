@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest'
-import {createValidateFn} from './solution.js'
+import {createValidateFn} from './solution'
 
 const chains: Chain[] = [
   {

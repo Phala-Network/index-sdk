@@ -21,3 +21,14 @@ declare interface Step {
 }
 
 declare type Solution = Step[]
+
+declare interface Task {
+  id: Hex
+  worker: Hex
+  status: string
+  source: string
+  steps: Hex
+  execute_index: number
+  sender: Hex
+  recipient: Hex
+}
