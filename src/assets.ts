@@ -6,7 +6,6 @@ export const ASSETS = {
     USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
     PHA: '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
   },
-
   Moonbeam: {
     GLMR: '0x0000000000000000000000000000000000000802',
     WGLMR: '0xAcc15dC74880C9944775448304B263D191c6077F',
@@ -16,6 +15,8 @@ export const ASSETS = {
   },
   Phala: {
     PHA: '0x0000',
+    GLMR: '0x010200511f040a',
+    ASTR: '0x010100591f',
   },
   Khala: {
     PHA: '0x0000',
