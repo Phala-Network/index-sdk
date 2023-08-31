@@ -137,27 +137,22 @@ export class Executor {
     this.#initialized = true
   }
 
-  async createChain(chainName: string) {
+  createEvmChain(chainName: string) {
+    this.#requireReady()
+    const chain = this.#chainMap.get(chainName)
+    if (chain == null || chain.chainType !== 'Evm') {
+      throw new Error(`Chain ${chainName} is not supported`)
+    }
+    return new EvmChain(chain, this)
+  }
+
+  createPhalaChain(chainName: string) {
     this.#requireReady()
     const chain = this.#chainMap.get(chainName)
     if (chain == null) {
-      throw new Error(`Chain ${chainName} is not found in registry`)
-    }
-
-    let chainInstance
-
-    if (chain.chainType === 'Evm') {
-      chainInstance = new EvmChain(chain, this)
-    } else if (chainName === 'Phala' || chainName === 'Khala') {
-      chainInstance = new PhalaChain(chain, this)
-      await chainInstance.isReady
-    }
-
-    if (chainInstance == null) {
       throw new Error(`Chain ${chainName} is not supported`)
     }
-
-    return chainInstance
+    return new PhalaChain(chain, this)
   }
 
   async getTask(id: string) {
@@ -175,7 +170,7 @@ export class Executor {
     let task: Task | undefined
     if (output.isOk) {
       // FIXME: extract task from output
-      task = output.asOk.toJSON() as unknown as Task
+      task = (output.asOk.toJSON() as any).ok as Task
     }
 
     if (task == null) {
@@ -195,7 +190,14 @@ export class Executor {
     //   this.#pair.address,
     //   {cert: this.#cert}
     // )
-    const worker = this.workers[Math.floor(Math.random() * this.workers.length)]
-    return worker
+    // const worker = this.workers[Math.floor(Math.random() * this.workers.length)]
+    // return worker
+
+    // TODO: remove hardcore worker
+    return {
+      account32:
+        '0x04dba0677fc274ffaccc0fa1030a66b171d1da9226d2bb9d152654e6a746f276',
+      account20: '0xbf526928373748b00763875448ee905367d97f96',
+    }
   }
 }

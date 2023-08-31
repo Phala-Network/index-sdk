@@ -1,14 +1,24 @@
 import {ethers} from 'ethers'
 import {describe, expect, test} from 'vitest'
-import {EvmChain} from './chain'
-import {PhalaChain} from './chain/phala'
 import {Environment, Executor} from './executor'
+import {Solution} from './types'
+
+const solution: Solution = [
+  {
+    exe_type: 'swap',
+    exe: 'moonbeam_stellaswap',
+    source_chain: 'Moonbeam',
+    dest_chain: 'Moonbeam',
+    spend_asset: '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080',
+    receive_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+  },
+]
 
 describe('Executor', () => {
   let executor: Executor
   test('initialization', async () => {
     executor = new Executor({environment: Environment.TESTNET})
-    expect(() => executor.createChain('Ethereum')).rejects.toThrowError(
+    expect(() => executor.createEvmChain('Ethereum')).toThrowError(
       'Executor is not ready'
     )
     await executor.isReady
@@ -18,7 +28,7 @@ describe('Executor', () => {
 
   test('create ethereum', async () => {
     await executor.isReady
-    const ethereum = (await executor.createChain('Ethereum')) as EvmChain
+    const ethereum = executor.createEvmChain('Ethereum')
     const asset = '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E'
     const account = '0x0000000000000000000000000000000000000000'
     const amount = ethers.parseEther('1')
@@ -32,19 +42,20 @@ describe('Executor', () => {
       asset,
       amount,
       '0x0000000000000000000000000000000000000000',
-      []
+      solution
     )
   })
 
   test('create phala', async () => {
     await executor.isReady
 
-    const phala = (await executor.createChain('Phala')) as PhalaChain
+    const phala = executor.createPhalaChain('Phala')
+    await phala.isReady
     const phalaTx = await phala.getDeposit(
       '0x00',
       1_000_000_000_000n,
       '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
-      []
+      solution
     )
   })
 })

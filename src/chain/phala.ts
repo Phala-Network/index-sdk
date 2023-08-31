@@ -1,17 +1,14 @@
-import {Executor} from '../executor'
-import {Chain, Solution} from '../types'
+import {Solution} from '../types'
 import {SubstrateChain} from './substrate'
 
 export class PhalaChain extends SubstrateChain {
-  constructor(chain: Chain, executor: Executor) {
-    super(chain, executor)
-  }
   async getDeposit(
     asset: string,
     amount: bigint,
     recipient: string,
     solution: Solution
   ) {
+    this.requireReady()
     if (!this.executor.validateSolution(solution)) {
       throw new Error('Solution is invalid')
     }
