@@ -1,6 +1,7 @@
 import {JsonRpcProvider, ethers} from 'ethers'
 import {Erc20__factory, Handler__factory} from '../ethersContracts'
 import {Executor} from '../executor'
+import {Chain, Solution} from '../types'
 import {BaseChain} from './base'
 
 export class EvmChain extends BaseChain {
@@ -30,6 +31,9 @@ export class EvmChain extends BaseChain {
     recipient: string,
     solution: Solution
   ) {
+    if (!this.executor.validateSolution(solution)) {
+      throw new Error('Solution is invalid')
+    }
     const handler = Handler__factory.connect(
       this.handlerContractAddress,
       this.#provider

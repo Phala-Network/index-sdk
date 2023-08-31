@@ -1,4 +1,5 @@
 import Ajv, {JSONSchemaType} from 'ajv'
+import {Chain, Solution} from './types'
 
 const hexPattern = '^0x[0-9a-fA-F]+$'
 

@@ -1,4 +1,5 @@
 import {Executor} from '../executor'
+import {Chain, Solution} from '../types'
 import {SubstrateChain} from './substrate'
 
 export class PhalaChain extends SubstrateChain {
@@ -11,7 +12,19 @@ export class PhalaChain extends SubstrateChain {
     recipient: string,
     solution: Solution
   ) {
+    if (!this.executor.validateSolution(solution)) {
+      throw new Error('Solution is invalid')
+    }
     const id = PhalaChain.generateId()
-    return {id, tx: {}}
+    const worker = (await this.executor.getWorker()).account32
+    const tx = this.api.tx.palletIndex.depositTask(
+      asset,
+      amount,
+      recipient,
+      worker,
+      id,
+      JSON.stringify(solution)
+    )
+    return {id, tx}
   }
 }

@@ -1,5 +1,6 @@
 import {ApiPromise, HttpProvider} from '@polkadot/api'
 import {Executor} from '../executor'
+import {Chain} from '../types'
 import {BaseChain} from './base'
 
 export abstract class SubstrateChain extends BaseChain {

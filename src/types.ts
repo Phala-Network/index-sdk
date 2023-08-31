@@ -1,6 +1,6 @@
-type Hex = `0x${string}`
+export type Hex = `0x${string}`
 
-declare interface Chain {
+export interface Chain {
   id: number
   name: string
   endpoint: string
@@ -11,7 +11,7 @@ declare interface Chain {
   txIndexer: string
 }
 
-declare interface Step {
+export interface Step {
   exe_type: 'swap' | 'bridge'
   exe: string
   source_chain: string
@@ -20,9 +20,9 @@ declare interface Step {
   receive_asset: string
 }
 
-declare type Solution = Step[]
+export type Solution = Step[]
 
-declare interface Task {
+export interface Task {
   id: Hex
   worker: Hex
   status: string

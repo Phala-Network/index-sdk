@@ -8,10 +8,10 @@ import {
 import {ApiPromise, WsProvider} from '@polkadot/api'
 import {Keyring} from '@polkadot/keyring'
 import {KeyringPair} from '@polkadot/keyring/types'
-import {EvmChain} from './chain'
-import {PhalaChain} from './chain/phala'
+import {EvmChain, PhalaChain} from './chain'
 import abi from './executor.json'
 import {createValidateFn} from './solution'
+import {Chain, Hex, Task} from './types'
 
 export enum Environment {
   MAINNET,
@@ -38,7 +38,7 @@ export class Executor {
   readonly #rpcUrl: string
   readonly #contractId: string
   readonly #api: ApiPromise
-  readonly #pair: KeyringPair
+  #pair: KeyringPair | undefined
   #cert: CertificateData | undefined
   #contract: PinkContractPromise | undefined = undefined
   #initialized = false
@@ -54,8 +54,7 @@ export class Executor {
     this.#api = new ApiPromise(
       phalaOptions({provider: new WsProvider(this.#rpcUrl), noInitWarn: true})
     )
-    const keyring = new Keyring({type: 'sr25519'})
-    this.#pair = keyring.addFromUri('//Alice')
+
     this.#isReady = this.#initialize()
   }
 
@@ -87,6 +86,8 @@ export class Executor {
 
   async #initialize() {
     await this.#api.isReady
+    const keyring = new Keyring({type: 'sr25519'})
+    this.#pair = keyring.addFromUri('//Alice')
     const phatRegistry = await OnChainRegistry.create(this.#api)
     this.#cert = await signCertificate({pair: this.#pair})
     const contractKey = await phatRegistry.getContractKeyOrFail(
@@ -162,7 +163,7 @@ export class Executor {
   async getTask(id: string) {
     this.#requireReady()
     // Passthrough type check
-    if (this.#contract == null || this.#cert == null) {
+    if (this.#contract == null || this.#cert == null || this.#pair == null) {
       throw new Error()
     }
     const {output} = await this.#contract.query.getRunningTask(

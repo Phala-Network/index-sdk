@@ -6,19 +6,15 @@ import {Environment, Executor} from './executor'
 
 describe('Executor', () => {
   let executor: Executor
-  test(
-    'initialization',
-    async () => {
-      executor = new Executor({environment: Environment.TESTNET})
-      expect(() => executor.createChain('Ethereum')).rejects.toThrowError(
-        'Executor is not ready'
-      )
-      await executor.isReady
-      expect(executor.initialized).toEqual(true)
-      expect(executor.chains.length).toBeGreaterThan(0)
-    },
-    {timeout: 10_000}
-  )
+  test('initialization', async () => {
+    executor = new Executor({environment: Environment.TESTNET})
+    expect(() => executor.createChain('Ethereum')).rejects.toThrowError(
+      'Executor is not ready'
+    )
+    await executor.isReady
+    expect(executor.initialized).toEqual(true)
+    expect(executor.chains.length).toBeGreaterThan(0)
+  })
 
   test('create ethereum', async () => {
     await executor.isReady
@@ -46,7 +42,7 @@ describe('Executor', () => {
     const phala = (await executor.createChain('Phala')) as PhalaChain
     const phalaTx = await phala.getDeposit(
       '0x00',
-      1233n,
+      1_000_000_000_000n,
       '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
       []
     )

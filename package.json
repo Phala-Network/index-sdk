@@ -1,6 +1,6 @@
 {
   "name": "@phala/index",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "inDEX JavaScript SDK",
   "license": "MIT",
   "author": "Phala Network Team",
@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsup",
     "coverage": "vitest run --coverage",
-    "postinstall": "typechain --target ethers-v6 --out-dir src/ethersContracts abi/*",
+    "prepare": "typechain --target ethers-v6 --out-dir src/ethersContracts abi/*",
     "test": "vitest"
   },
   "dependencies": {

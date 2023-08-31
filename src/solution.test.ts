@@ -1,5 +1,6 @@
 import {expect, test} from 'vitest'
 import {createValidateFn} from './solution'
+import {Chain} from './types'
 
 const chains: Chain[] = [
   {

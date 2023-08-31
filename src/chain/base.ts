@@ -1,4 +1,5 @@
 import {Executor} from '../executor'
+import {Chain, Hex, Solution} from '../types'
 
 export abstract class BaseChain {
   protected readonly executor: Executor
