@@ -1,13 +1,13 @@
 import {JsonRpcProvider, ethers} from 'ethers'
+import {Client} from '../client'
 import {Erc20__factory, Handler__factory} from '../ethersContracts'
-import {Executor} from '../executor'
 import {Chain, Solution} from '../types'
 import {BaseChain} from './base'
 
 export class EvmChain extends BaseChain {
   #provider: JsonRpcProvider
-  constructor(chain: Chain, executor: Executor) {
-    super(chain, executor)
+  constructor(chain: Chain, client: Client) {
+    super(chain, client)
     this.#provider = new ethers.JsonRpcProvider(this.endpoint)
   }
 
@@ -31,7 +31,7 @@ export class EvmChain extends BaseChain {
     recipient: string,
     solution: Solution
   ) {
-    if (!this.executor.validateSolution(solution)) {
+    if (!this.client.validateSolution(solution)) {
       throw new Error('Solution is invalid')
     }
     const handler = Handler__factory.connect(
@@ -39,7 +39,7 @@ export class EvmChain extends BaseChain {
       this.#provider
     )
     const id = EvmChain.generateId()
-    const worker = (await this.executor.getWorker()).account20
+    const worker = (await this.client.getWorker()).account20
     const tx = await handler.deposit.populateTransaction(
       asset,
       amount,

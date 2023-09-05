@@ -9,11 +9,11 @@ export class PhalaChain extends SubstrateChain {
     solution: Solution
   ) {
     this.requireReady()
-    if (!this.executor.validateSolution(solution)) {
+    if (!this.client.validateSolution(solution)) {
       throw new Error('Solution is invalid')
     }
     const id = PhalaChain.generateId()
-    const worker = (await this.executor.getWorker()).account32
+    const worker = (await this.client.getWorker()).account32
     const tx = this.api.tx.palletIndex.depositTask(
       asset,
       amount,

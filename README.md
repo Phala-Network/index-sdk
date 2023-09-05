@@ -1,19 +1,22 @@
 # inDEX JavaScript SDK
 
+## Getting Started
+
 ```sh
 npm install @phala/index
 ```
 
-## Getting Started
-
 ```javascript
-const executor = new Executor()
-await executor.isReady
+import {Client} from '@phala/index'
+const client = new Client()
+await client.isReady
 ```
 
 ### EVM Chain
 
 ```javascript
+import {Wallet, ethers} from 'ethers'
+
 const privateKey = '0x…'
 const wallet = new Wallet(privateKey)
 const recipient = '0x…'
@@ -21,7 +24,7 @@ const solution = [
   // JSON solution
 ]
 
-const moonbeam = executor.createEvmChain('Moonbeam')
+const moonbeam = client.createEvmChain('Moonbeam')
 const asset = ASSETS.Moonbeam.WGLMR
 const amount = ethers.parseEther('1')
 const approvalTx = await moonbeam.getApproval(asset, wallet.address, amount)
@@ -30,12 +33,14 @@ if (approvalTx) {
 }
 const deposit = await moonbeam.getDeposit(asset, amount, recipient, solution)
 const txHash = await wallet.signTransaction(deposit.tx)
-const task = await executor.getTask(deposit.id)
+const task = await client.getTask(deposit.id)
 ```
 
 ### Substrate Chain
 
 ```javascript
+import Keyring from '@polkadot/keyring'
+
 const mnemonic = 'mnemonic'
 const recipient = '0x…'
 const keyring = new Keyring({type: 'sr25519'})
@@ -44,7 +49,7 @@ const solution = [
   // JSON solution
 ]
 
-const phala = executor.createPhalaChain('Phala')
+const phala = client.createPhalaChain('Phala')
 await phala.isReady
 const deposit = await phala.getDeposit(
   ASSETS.Phala.PHA,
@@ -53,5 +58,5 @@ const deposit = await phala.getDeposit(
   solution
 )
 const txHash = await deposit.tx.signAndSend(pair)
-const task = await executor.getTask(deposit.id)
+const task = await client.getTask(deposit.id)
 ```

@@ -1,8 +1,8 @@
-import {Executor} from '../executor'
+import {Client} from '../client'
 import {Chain, Hex, Solution} from '../types'
 
 export abstract class BaseChain {
-  protected readonly executor: Executor
+  protected readonly client: Client
   protected readonly endpoint: string
   protected readonly handlerContractAddress: string
   readonly name: string
@@ -23,10 +23,10 @@ export abstract class BaseChain {
     return `0x${Buffer.from(array).toString('hex')}`
   }
 
-  constructor(chain: Chain, executor: Executor) {
+  constructor(chain: Chain, client: Client) {
     this.name = chain.name
     this.endpoint = chain.endpoint
     this.handlerContractAddress = chain.handlerContract
-    this.executor = executor
+    this.client = client
   }
 }

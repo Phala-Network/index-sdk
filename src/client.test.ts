@@ -1,6 +1,6 @@
 import {ethers} from 'ethers'
 import {describe, expect, test} from 'vitest'
-import {Environment, Executor} from './executor'
+import {Environment, Client} from './client'
 import {Solution} from './types'
 
 const solution: Solution = [
@@ -14,21 +14,21 @@ const solution: Solution = [
   },
 ]
 
-describe('Executor', () => {
-  let executor: Executor
+describe('Client', () => {
+  let client: Client
   test('initialization', async () => {
-    executor = new Executor({environment: Environment.TESTNET})
-    expect(() => executor.createEvmChain('Ethereum')).toThrowError(
-      'Executor is not ready'
+    client = new Client({environment: Environment.TESTNET})
+    expect(() => client.createEvmChain('Ethereum')).toThrowError(
+      'Client is not ready'
     )
-    await executor.isReady
-    expect(executor.initialized).toEqual(true)
-    expect(executor.chains.length).toBeGreaterThan(0)
+    await client.isReady
+    expect(client.initialized).toEqual(true)
+    expect(client.chains.length).toBeGreaterThan(0)
   })
 
   test('create ethereum', async () => {
-    await executor.isReady
-    const ethereum = executor.createEvmChain('Ethereum')
+    await client.isReady
+    const ethereum = client.createEvmChain('Ethereum')
     const asset = '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E'
     const account = '0x0000000000000000000000000000000000000000'
     const amount = ethers.parseEther('1')
@@ -47,9 +47,9 @@ describe('Executor', () => {
   })
 
   test('create phala', async () => {
-    await executor.isReady
+    await client.isReady
 
-    const phala = executor.createPhalaChain('Phala')
+    const phala = client.createPhalaChain('Phala')
     await phala.isReady
     const phalaTx = await phala.getDeposit(
       '0x00',

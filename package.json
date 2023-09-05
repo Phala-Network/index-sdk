@@ -1,6 +1,6 @@
 {
   "name": "@phala/index",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "inDEX JavaScript SDK",
   "license": "MIT",
   "author": "Phala Network Team",
@@ -23,7 +23,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@phala/sdk": "^0.5.1-nightly-20230824-1",
+    "@phala/sdk": "^0.5.1-nightly-20230905",
     "@polkadot/api": "^10.9.1",
     "@polkadot/keyring": "^12.4.2",
     "ajv": "^8.12.0",

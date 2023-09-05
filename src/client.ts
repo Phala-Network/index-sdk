@@ -9,9 +9,9 @@ import {ApiPromise, WsProvider} from '@polkadot/api'
 import {Keyring} from '@polkadot/keyring'
 import {KeyringPair} from '@polkadot/keyring/types'
 import {EvmChain, PhalaChain} from './chain'
-import abi from './executor.json'
+import abi from './index_executor.json'
 import {createValidateFn} from './solution'
-import {Chain, Hex, Task} from './types'
+import {Chain, Task, Worker} from './types'
 
 export enum Environment {
   MAINNET,
@@ -27,15 +27,19 @@ const contractId: Record<Environment, string> = {
   [Environment.MAINNET]:
     '0x271f04685ff7dfab0e08957a1dbbb1cbc205125e7a04a538be364535b8c449f9',
   [Environment.TESTNET]:
-    '0x271f04685ff7dfab0e08957a1dbbb1cbc205125e7a04a538be364535b8c449f9',
+    '0x6c4a8da9609127175e09a6061b2e06ab769f41c8b56b761483114ff2cd478169',
 }
 
 export interface Options {
-  environment: Environment
+  environment?: Environment
+  overrides?: {
+    endpoint?: string
+    contractId?: string
+  }
 }
 
-export class Executor {
-  readonly #rpcUrl: string
+export class Client {
+  readonly #endpoint: string
   readonly #contractId: string
   readonly #api: ApiPromise
   #pair: KeyringPair | undefined
@@ -46,13 +50,14 @@ export class Executor {
   #chainMap: Map<string, Chain> = new Map()
   #isReady: Promise<void>
 
-  workers: Array<{account20: Hex; account32: Hex}> = []
+  workers: Worker[] = []
 
-  constructor(options: Options = {environment: Environment.MAINNET}) {
-    this.#rpcUrl = rpcUrl[options.environment]
-    this.#contractId = contractId[options.environment]
+  constructor(options?: Options) {
+    const environment = options?.environment ?? Environment.MAINNET
+    this.#endpoint = options?.overrides?.endpoint ?? rpcUrl[environment]
+    this.#contractId = options?.overrides?.contractId ?? contractId[environment]
     this.#api = new ApiPromise(
-      phalaOptions({provider: new WsProvider(this.#rpcUrl), noInitWarn: true})
+      phalaOptions({provider: new WsProvider(this.#endpoint), noInitWarn: true})
     )
 
     this.#isReady = this.#initialize()
@@ -60,8 +65,8 @@ export class Executor {
 
   // TODO: use as decorator when esbuild is ready
   #requireReady() {
-    if (this.initialized === false) {
-      throw new Error('Executor is not ready')
+    if (this.#initialized === false) {
+      throw new Error('Client is not ready')
     }
   }
 
@@ -180,7 +185,7 @@ export class Executor {
     return task
   }
 
-  async getWorker() {
+  async getWorker(): Promise<Worker> {
     this.#requireReady()
     // // Passthrough type check
     // if (this.#contract == null || this.#cert == null) {

@@ -1,5 +1,7 @@
 export type Hex = `0x${string}`
 
+export type Worker = {account20: Hex; account32: Hex}
+
 export interface Chain {
   id: number
   name: string
