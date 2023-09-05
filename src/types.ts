@@ -24,13 +24,36 @@ export interface Step {
 
 export type Solution = Step[]
 
+interface TaskStep {
+  exeType: 'bridge' | 'swap'
+  exe: string
+  sourceChain: string
+  destChain: string
+  spendAsset: Hex
+  receiveAsset: Hex
+  sender: null
+  recipient: Hex
+  spendAmount: number | string
+  originBalance: number | string | null
+  nonce: number | null
+}
 export interface Task {
   id: Hex
   worker: Hex
-  status: string
+  status:
+    | {executing: [number] | [number, number]}
+    | {actived: null}
+    | {initialized: null}
+    | {completed: null}
   source: string
-  steps: Hex
-  execute_index: number
+  amount: number | string
+  claimNonce: number
+  claimTx: Hex
+  steps: TaskStep[]
+  mergedSteps: Array<{batch: TaskStep[]} | {single: TaskStep}>
+  executeTxs: Hex[]
+  executeIndex: number
   sender: Hex
   recipient: Hex
+  retryCounter: number
 }
