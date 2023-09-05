@@ -1,7 +1,9 @@
 import {ApiPromise, HttpProvider} from '@polkadot/api'
 import {Client} from '../client'
-import {Chain} from '../types'
+import {Chain, Solution} from '../types'
 import {BaseChain} from './base'
+import {SubmittableExtrinsic} from '@polkadot/api/types'
+import {ISubmittableResult} from '@polkadot/types/types'
 
 export abstract class SubstrateChain extends BaseChain {
   #initialized = false
@@ -22,4 +24,13 @@ export abstract class SubstrateChain extends BaseChain {
   get isReady() {
     return this.api.isReady.then(() => this)
   }
+  abstract getDeposit(
+    asset: string,
+    amount: bigint,
+    recipient: string,
+    solution: Solution
+  ): Promise<{
+    id: `0x${string}`
+    tx: SubmittableExtrinsic<'promise', ISubmittableResult>
+  }>
 }
