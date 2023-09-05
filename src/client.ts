@@ -48,7 +48,7 @@ export class Client {
   #initialized = false
   #chains: Chain[] = []
   #chainMap: Map<string, Chain> = new Map()
-  #isReady: Promise<void>
+  #isReady: Promise<this>
 
   workers: Worker[] = []
 
@@ -78,7 +78,11 @@ export class Client {
     return this.#chains
   }
 
-  get isReady(): Promise<void> {
+  get chainMap(): Map<string, Chain> {
+    return this.#chainMap
+  }
+
+  get isReady(): Promise<this> {
     return this.#isReady
   }
 
@@ -140,6 +144,8 @@ export class Client {
 
     this.#validateSolution = createValidateFn(this.#chains)
     this.#initialized = true
+
+    return this
   }
 
   createEvmChain(chainName: string) {

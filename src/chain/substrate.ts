@@ -20,6 +20,6 @@ export abstract class SubstrateChain extends BaseChain {
     }
   }
   get isReady() {
-    return this.api.isReady
+    return this.api.isReady.then(() => this)
   }
 }

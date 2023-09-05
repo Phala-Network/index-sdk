@@ -1,6 +1,7 @@
 import {ethers} from 'ethers'
 import {describe, expect, test} from 'vitest'
-import {Environment, Client} from './client'
+import {ASSETS} from './assets'
+import {Client, Environment} from './client'
 import {Solution} from './types'
 
 const solution: Solution = [
@@ -29,7 +30,7 @@ describe('Client', () => {
   test('create ethereum', async () => {
     await client.isReady
     const ethereum = client.createEvmChain('Ethereum')
-    const asset = '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E'
+    const asset = ASSETS.Ethereum.PHA
     const account = '0x0000000000000000000000000000000000000000'
     const amount = ethers.parseEther('1')
     const approvalTx = await ethereum.getApproval(asset, account, amount)
@@ -52,7 +53,7 @@ describe('Client', () => {
     const phala = client.createPhalaChain('Phala')
     await phala.isReady
     const phalaTx = await phala.getDeposit(
-      '0x00',
+      ASSETS.Phala.PHA,
       1_000_000_000_000n,
       '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
       solution
