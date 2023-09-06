@@ -32,7 +32,7 @@ if (approvalTx) {
   await wallet.signTransaction(approvalTx)
 }
 const deposit = await moonbeam.getDeposit(asset, amount, recipient, solution)
-const txHash = await wallet.signTransaction(deposit.tx)
+const tx = await wallet.sendTransaction(deposit.tx)
 const task = await client.getTask(deposit.id)
 ```
 
