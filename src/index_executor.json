@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x35b49e63f585c168d9bb3ec08740838e3426dc4ad7b8af308ee5bbc22d3e7f04",
+    "hash": "0x485ffbc314ada5d6a3ee26e4e01acf01d46fb6b59c0b2a22f91711c9da7635d2",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -67,13 +67,13 @@
         "displayName": [
           "ChainExtension"
         ],
-        "type": 55
+        "type": 54
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 54
+        "type": 53
       },
       "maxEventTopics": 4,
       "timestamp": {
@@ -530,7 +530,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 46
+          "type": 45
         },
         "selector": "0x7c1ada8e"
       },
@@ -548,7 +548,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 48
         },
         "selector": "0x15a5d20a"
       },
@@ -566,7 +566,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 52
+          "type": 51
         },
         "selector": "0xd9f7efbc"
       },
@@ -1708,24 +1708,14 @@
                 "typeName": "Option<u64>"
               },
               {
-                "name": "claim_tx",
-                "type": 39,
-                "typeName": "Option<Vec<u8>>"
-              },
-              {
                 "name": "steps",
-                "type": 40,
+                "type": 39,
                 "typeName": "Vec<Step>"
               },
               {
                 "name": "merged_steps",
                 "type": 43,
                 "typeName": "Vec<MultiStep>"
-              },
-              {
-                "name": "execute_txs",
-                "type": 45,
-                "typeName": "Vec<Vec<u8>>"
               },
               {
                 "name": "execute_index",
@@ -1774,16 +1764,6 @@
               {
                 "fields": [
                   {
-                    "type": 8,
-                    "typeName": "Vec<u8>"
-                  }
-                ],
-                "index": 2,
-                "name": "Claimed"
-              },
-              {
-                "fields": [
-                  {
                     "type": 2,
                     "typeName": "u8"
                   },
@@ -1792,11 +1772,11 @@
                     "typeName": "Option<u64>"
                   }
                 ],
-                "index": 3,
+                "index": 2,
                 "name": "Executing"
               },
               {
-                "index": 4,
+                "index": 3,
                 "name": "Completed"
               }
             ]
@@ -1854,47 +1834,14 @@
       "id": 39,
       "type": {
         "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 40,
-      "type": {
-        "def": {
           "sequence": {
-            "type": 41
+            "type": 40
           }
         }
       }
     },
     {
-      "id": 41,
+      "id": 40,
       "type": {
         "def": {
           "composite": {
@@ -1931,12 +1878,12 @@
               },
               {
                 "name": "sender",
-                "type": 39,
+                "type": 41,
                 "typeName": "Option<Vec<u8>>"
               },
               {
                 "name": "recipient",
-                "type": 39,
+                "type": 41,
                 "typeName": "Option<Vec<u8>>"
               },
               {
@@ -1961,6 +1908,39 @@
           "index_executor",
           "step",
           "Step"
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Option"
         ]
       }
     },
@@ -2016,7 +1996,7 @@
               {
                 "fields": [
                   {
-                    "type": 41,
+                    "type": 40,
                     "typeName": "Step"
                   }
                 ],
@@ -2026,7 +2006,7 @@
               {
                 "fields": [
                   {
-                    "type": 40,
+                    "type": 39,
                     "typeName": "Vec<Step>"
                   }
                 ],
@@ -2047,22 +2027,12 @@
       "id": 45,
       "type": {
         "def": {
-          "sequence": {
-            "type": 8
-          }
-        }
-      }
-    },
-    {
-      "id": 46,
-      "type": {
-        "def": {
           "variant": {
             "variants": [
               {
                 "fields": [
                   {
-                    "type": 47
+                    "type": 46
                   }
                 ],
                 "index": 0,
@@ -2083,7 +2053,7 @@
         "params": [
           {
             "name": "T",
-            "type": 47
+            "type": 46
           },
           {
             "name": "E",
@@ -2096,7 +2066,7 @@
       }
     },
     {
-      "id": 47,
+      "id": 46,
       "type": {
         "def": {
           "variant": {
@@ -2104,7 +2074,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 47
                   }
                 ],
                 "index": 0,
@@ -2125,7 +2095,7 @@
         "params": [
           {
             "name": "T",
-            "type": 48
+            "type": 47
           },
           {
             "name": "E",
@@ -2138,7 +2108,7 @@
       }
     },
     {
-      "id": 48,
+      "id": 47,
       "type": {
         "def": {
           "variant": {
@@ -2171,7 +2141,7 @@
       }
     },
     {
-      "id": 49,
+      "id": 48,
       "type": {
         "def": {
           "variant": {
@@ -2179,7 +2149,7 @@
               {
                 "fields": [
                   {
-                    "type": 50
+                    "type": 49
                   }
                 ],
                 "index": 0,
@@ -2200,7 +2170,7 @@
         "params": [
           {
             "name": "T",
-            "type": 50
+            "type": 49
           },
           {
             "name": "E",
@@ -2213,7 +2183,7 @@
       }
     },
     {
-      "id": 50,
+      "id": 49,
       "type": {
         "def": {
           "variant": {
@@ -2221,7 +2191,7 @@
               {
                 "fields": [
                   {
-                    "type": 51
+                    "type": 50
                   }
                 ],
                 "index": 0,
@@ -2242,7 +2212,7 @@
         "params": [
           {
             "name": "T",
-            "type": 51
+            "type": 50
           },
           {
             "name": "E",
@@ -2255,7 +2225,7 @@
       }
     },
     {
-      "id": 51,
+      "id": 50,
       "type": {
         "def": {
           "composite": {
@@ -2276,7 +2246,7 @@
       }
     },
     {
-      "id": 52,
+      "id": 51,
       "type": {
         "def": {
           "variant": {
@@ -2284,7 +2254,7 @@
               {
                 "fields": [
                   {
-                    "type": 53
+                    "type": 52
                   }
                 ],
                 "index": 0,
@@ -2305,7 +2275,7 @@
         "params": [
           {
             "name": "T",
-            "type": 53
+            "type": 52
           },
           {
             "name": "E",
@@ -2318,7 +2288,7 @@
       }
     },
     {
-      "id": 53,
+      "id": 52,
       "type": {
         "def": {
           "variant": {
@@ -2360,7 +2330,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 53,
       "type": {
         "def": {
           "composite": {
@@ -2380,7 +2350,7 @@
       }
     },
     {
-      "id": 55,
+      "id": 54,
       "type": {
         "def": {
           "variant": {}
