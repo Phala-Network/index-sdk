@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x485ffbc314ada5d6a3ee26e4e01acf01d46fb6b59c0b2a22f91711c9da7635d2",
+    "hash": "0x2eaa63ede89491bd336c2f488436ab38cd25043a4603a3196f1ef5739c6cb9cc",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -67,13 +67,13 @@
         "displayName": [
           "ChainExtension"
         ],
-        "type": 54
+        "type": 55
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 53
+        "type": 54
       },
       "maxEventTopics": 4,
       "timestamp": {
@@ -530,7 +530,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 45
+          "type": 46
         },
         "selector": "0x7c1ada8e"
       },
@@ -548,7 +548,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 48
+          "type": 49
         },
         "selector": "0x15a5d20a"
       },
@@ -566,7 +566,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 51
+          "type": 52
         },
         "selector": "0xd9f7efbc"
       },
@@ -1708,14 +1708,24 @@
                 "typeName": "Option<u64>"
               },
               {
-                "name": "steps",
+                "name": "claim_tx",
                 "type": 39,
+                "typeName": "Option<Vec<u8>>"
+              },
+              {
+                "name": "steps",
+                "type": 40,
                 "typeName": "Vec<Step>"
               },
               {
                 "name": "merged_steps",
                 "type": 43,
                 "typeName": "Vec<MultiStep>"
+              },
+              {
+                "name": "execute_txs",
+                "type": 45,
+                "typeName": "Vec<Vec<u8>>"
               },
               {
                 "name": "execute_index",
@@ -1764,6 +1774,16 @@
               {
                 "fields": [
                   {
+                    "type": 8,
+                    "typeName": "Vec<u8>"
+                  }
+                ],
+                "index": 2,
+                "name": "Claimed"
+              },
+              {
+                "fields": [
+                  {
                     "type": 2,
                     "typeName": "u8"
                   },
@@ -1772,11 +1792,11 @@
                     "typeName": "Option<u64>"
                   }
                 ],
-                "index": 2,
+                "index": 3,
                 "name": "Executing"
               },
               {
-                "index": 3,
+                "index": 4,
                 "name": "Completed"
               }
             ]
@@ -1834,14 +1854,47 @@
       "id": 39,
       "type": {
         "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": {
+        "def": {
           "sequence": {
-            "type": 40
+            "type": 41
           }
         }
       }
     },
     {
-      "id": 40,
+      "id": 41,
       "type": {
         "def": {
           "composite": {
@@ -1878,12 +1931,12 @@
               },
               {
                 "name": "sender",
-                "type": 41,
+                "type": 39,
                 "typeName": "Option<Vec<u8>>"
               },
               {
                 "name": "recipient",
-                "type": 41,
+                "type": 39,
                 "typeName": "Option<Vec<u8>>"
               },
               {
@@ -1908,39 +1961,6 @@
           "index_executor",
           "step",
           "Step"
-        ]
-      }
-    },
-    {
-      "id": 41,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Option"
         ]
       }
     },
@@ -1996,7 +2016,7 @@
               {
                 "fields": [
                   {
-                    "type": 40,
+                    "type": 41,
                     "typeName": "Step"
                   }
                 ],
@@ -2006,7 +2026,7 @@
               {
                 "fields": [
                   {
-                    "type": 39,
+                    "type": 40,
                     "typeName": "Vec<Step>"
                   }
                 ],
@@ -2027,42 +2047,10 @@
       "id": 45,
       "type": {
         "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 46
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
+          "sequence": {
+            "type": 8
           }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 46
-          },
-          {
-            "name": "E",
-            "type": 18
-          }
-        ],
-        "path": [
-          "Result"
-        ]
+        }
       }
     },
     {
@@ -2083,7 +2071,7 @@
               {
                 "fields": [
                   {
-                    "type": 21
+                    "type": 18
                   }
                 ],
                 "index": 1,
@@ -2099,7 +2087,7 @@
           },
           {
             "name": "E",
-            "type": 21
+            "type": 18
           }
         ],
         "path": [
@@ -2109,6 +2097,48 @@
     },
     {
       "id": 47,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 48
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 48,
       "type": {
         "def": {
           "variant": {
@@ -2141,7 +2171,7 @@
       }
     },
     {
-      "id": 48,
+      "id": 49,
       "type": {
         "def": {
           "variant": {
@@ -2149,7 +2179,7 @@
               {
                 "fields": [
                   {
-                    "type": 49
+                    "type": 50
                   }
                 ],
                 "index": 0,
@@ -2170,7 +2200,7 @@
         "params": [
           {
             "name": "T",
-            "type": 49
+            "type": 50
           },
           {
             "name": "E",
@@ -2183,7 +2213,7 @@
       }
     },
     {
-      "id": 49,
+      "id": 50,
       "type": {
         "def": {
           "variant": {
@@ -2191,7 +2221,7 @@
               {
                 "fields": [
                   {
-                    "type": 50
+                    "type": 51
                   }
                 ],
                 "index": 0,
@@ -2212,7 +2242,7 @@
         "params": [
           {
             "name": "T",
-            "type": 50
+            "type": 51
           },
           {
             "name": "E",
@@ -2225,7 +2255,7 @@
       }
     },
     {
-      "id": 50,
+      "id": 51,
       "type": {
         "def": {
           "composite": {
@@ -2246,7 +2276,7 @@
       }
     },
     {
-      "id": 51,
+      "id": 52,
       "type": {
         "def": {
           "variant": {
@@ -2254,7 +2284,7 @@
               {
                 "fields": [
                   {
-                    "type": 52
+                    "type": 53
                   }
                 ],
                 "index": 0,
@@ -2275,7 +2305,7 @@
         "params": [
           {
             "name": "T",
-            "type": 52
+            "type": 53
           },
           {
             "name": "E",
@@ -2288,7 +2318,7 @@
       }
     },
     {
-      "id": 52,
+      "id": 53,
       "type": {
         "def": {
           "variant": {
@@ -2330,7 +2360,7 @@
       }
     },
     {
-      "id": 53,
+      "id": 54,
       "type": {
         "def": {
           "composite": {
@@ -2350,7 +2380,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 55,
       "type": {
         "def": {
           "variant": {}

@@ -27,7 +27,7 @@ const contractId: Record<Environment, string> = {
   [Environment.MAINNET]:
     '0x271f04685ff7dfab0e08957a1dbbb1cbc205125e7a04a538be364535b8c449f9',
   [Environment.TESTNET]:
-    '0x7fc821a1e36e500e09dfb579869d09962107c46605b032f40958bb1f517fdb8b',
+    '0x3c17a162addaea928e2bf74e529eb4bf9fbb7d53b5521e961ed46df840099e74',
 }
 
 export interface Options {
