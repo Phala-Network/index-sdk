@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest'
-import {createValidateFn} from './solution'
+import {createValidateFn, encodeSolution} from './solution'
 import {Chain} from './types'
 
 const chains: Chain[] = [
@@ -81,20 +81,20 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exe_type: 'swap',
+        exeType: 'swap',
         exe: 'moonbeam_stellaswap',
-        source_chain: 'Moonbeam',
-        dest_chain: 'Moonbeam',
-        spend_asset: '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080',
-        receive_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        sourceChain: 'Moonbeam',
+        destChain: 'Moonbeam',
+        spendAsset: '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080',
+        receiveAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
       },
       {
-        exe_type: 'bridge',
+        exeType: 'bridge',
         exe: 'moonbeam_bridge_to_phala',
-        source_chain: 'Moonbeam',
-        dest_chain: 'Phala',
-        spend_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receive_asset: '0x0000',
+        sourceChain: 'Moonbeam',
+        destChain: 'Phala',
+        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        receiveAsset: '0x0000',
       },
     ],
     true,
@@ -102,12 +102,12 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exe_type: 'bridge_a',
+        exeType: 'bridge_a',
         exe: 'moonbeam_bridge_to_phala',
-        source_chain: 'Moonbeam_a',
-        dest_chain: 'Phala_a',
-        spend_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED_a',
-        receive_asset: '0x0000_a',
+        sourceChain: 'Moonbeam_a',
+        destChain: 'Phala_a',
+        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED_a',
+        receiveAsset: '0x0000_a',
       },
     ],
     false,
@@ -115,12 +115,12 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exe_type: 'bridge',
+        exeType: 'bridge',
         exe: 'moonbeam_bridge_to_phala',
-        source_chain: 'Moonbeam',
-        dest_chain: 'Moonbeam',
-        spend_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receive_asset: '0x0000',
+        sourceChain: 'Moonbeam',
+        destChain: 'Moonbeam',
+        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        receiveAsset: '0x0000',
       },
     ],
     false,
@@ -128,12 +128,12 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exe_type: 'swap',
+        exeType: 'swap',
         exe: 'moonbeam_bridge_to_phala',
-        source_chain: 'Moonbeam',
-        dest_chain: 'Moonbeam',
-        spend_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receive_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        sourceChain: 'Moonbeam',
+        destChain: 'Moonbeam',
+        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        receiveAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
       },
     ],
     false,
@@ -141,12 +141,12 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exe_type: 'swap',
+        exeType: 'swap',
         exe: 'moonbeam_bridge_to_phala',
-        source_chain: 'Moonbeam',
-        dest_chain: 'Phala',
-        spend_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receive_asset: '0x0000',
+        sourceChain: 'Moonbeam',
+        destChain: 'Phala',
+        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        receiveAsset: '0x0000',
       },
     ],
     false,
@@ -154,20 +154,20 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exe_type: 'swap',
+        exeType: 'swap',
         exe: 'moonbeam_stellaswap',
-        source_chain: 'Moonbeam',
-        dest_chain: 'Moonbeam',
-        spend_asset: '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080',
-        receive_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        sourceChain: 'Moonbeam',
+        destChain: 'Moonbeam',
+        spendAsset: '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080',
+        receiveAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
       },
       {
-        exe_type: 'bridge',
+        exeType: 'bridge',
         exe: 'moonbeam_bridge_to_phala',
-        source_chain: 'Khala',
-        dest_chain: 'Phala',
-        spend_asset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receive_asset: '0x0000',
+        sourceChain: 'Khala',
+        destChain: 'Phala',
+        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+        receiveAsset: '0x0000',
       },
     ],
     false,
@@ -178,5 +178,6 @@ for (let i = 0; i < cases.length; i++) {
   const [solution, valid] = cases[i]
   test(`Validate solution ${i + 1}`, () => {
     expect(validate(solution)).toBe(valid)
+    expect(encodeSolution(solution)).toMatchSnapshot()
   })
 }
