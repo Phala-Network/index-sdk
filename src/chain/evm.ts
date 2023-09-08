@@ -3,6 +3,8 @@ import {Client} from '../client'
 import {Erc20__factory, Handler__factory} from '../ethersContracts'
 import {Chain, Solution} from '../types'
 import {BaseChain} from './base'
+import {encodeSolution} from '../solution'
+import {generateId} from '../lib'
 
 export class EvmChain extends BaseChain {
   #provider: JsonRpcProvider
@@ -38,7 +40,7 @@ export class EvmChain extends BaseChain {
       this.handlerContractAddress,
       this.#provider
     )
-    const id = EvmChain.generateId()
+    const id = generateId()
     const worker = (await this.client.getWorker()).account20
     const tx = await handler.deposit.populateTransaction(
       asset,
@@ -46,7 +48,9 @@ export class EvmChain extends BaseChain {
       recipient,
       worker,
       id,
-      JSON.stringify(solution)
+      [...encodeSolution(solution)]
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('')
     )
     return {id, tx}
   }

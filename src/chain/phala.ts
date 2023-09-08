@@ -1,3 +1,5 @@
+import {generateId} from '../lib'
+import {encodeSolution} from '../solution'
 import {Solution} from '../types'
 import {SubstrateChain} from './substrate'
 
@@ -12,7 +14,7 @@ export class PhalaChain extends SubstrateChain {
     if (!this.client.validateSolution(solution)) {
       throw new Error('Solution is invalid')
     }
-    const id = PhalaChain.generateId()
+    const id = generateId()
     const worker = (await this.client.getWorker()).account32
     const tx = this.api.tx.palletIndex.depositTask(
       asset,
@@ -20,7 +22,7 @@ export class PhalaChain extends SubstrateChain {
       recipient,
       worker,
       id,
-      JSON.stringify(solution)
+      encodeSolution(solution)
     )
     return {id, tx}
   }

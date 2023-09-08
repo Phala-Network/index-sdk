@@ -14,12 +14,12 @@ export interface Chain {
 }
 
 export interface Step {
-  exe_type: 'swap' | 'bridge'
+  exeType: 'swap' | 'bridge'
   exe: string
-  source_chain: string
-  dest_chain: string
-  spend_asset: string
-  receive_asset: string
+  sourceChain: string
+  destChain: string
+  spendAsset: string
+  receiveAsset: string
 }
 
 export type Solution = Step[]

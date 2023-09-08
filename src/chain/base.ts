@@ -13,16 +13,6 @@ export abstract class BaseChain {
     solution: Solution
   ): Promise<{id: Hex; tx: unknown}>
 
-  protected static generateId(length = 32): Hex {
-    const array = new Uint8Array(length)
-    const crypto =
-      typeof window === 'undefined'
-        ? require('crypto').webcrypto
-        : window.crypto
-    crypto.getRandomValues(array)
-    return `0x${Buffer.from(array).toString('hex')}`
-  }
-
   constructor(chain: Chain, client: Client) {
     this.name = chain.name
     this.endpoint = chain.endpoint
