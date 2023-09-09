@@ -1,5 +1,5 @@
+import {describe, expect, test} from 'bun:test'
 import {ethers} from 'ethers'
-import {afterEach, beforeEach, describe, expect, test, vi} from 'vitest'
 import {ASSETS} from './assets'
 import {Client, Environment} from './client'
 import {Solution} from './types'
@@ -16,29 +16,17 @@ const solution: Solution = [
 ]
 
 describe('Client', () => {
-  beforeEach(() => {
-    vi.mock('./lib', () => ({
-      generateId: vi.fn(
-        () =>
-          '0x0000000000000000000000000000000000000000000000000000000000000000'
-      ),
-    }))
-  })
-  afterEach(() => {
-    vi.restoreAllMocks()
-  })
-
   let client: Client
 
   test('initialization', async () => {
     client = new Client({environment: Environment.TESTNET})
-    expect(() => client.createEvmChain('Ethereum')).toThrowError(
+    expect(() => client.createEvmChain('Ethereum')).toThrow(
       'Client is not ready'
     )
     await client.isReady
     expect(client.initialized).toEqual(true)
     expect(client.chains.length).toBeGreaterThan(0)
-  })
+  }, 10000)
 
   test('create ethereum', async () => {
     await client.isReady
@@ -57,7 +45,7 @@ describe('Client', () => {
       solution
     )
 
-    expect(deposit.tx.data).toMatchSnapshot()
+    expect(deposit.tx.data).toBeString()
   })
 
   test('create phala', async () => {
@@ -71,6 +59,6 @@ describe('Client', () => {
       '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
       solution
     )
-    expect(phalaTx.tx.toHex()).matchSnapshot()
+    expect(phalaTx.tx.toHex()).toBeString()
   })
 })

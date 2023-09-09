@@ -1,4 +1,4 @@
-import {expect, test} from 'vitest'
+import {expect, test} from 'bun:test'
 import {createValidateFn, encodeSolution} from './solution'
 import {Chain} from './types'
 

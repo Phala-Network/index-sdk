@@ -5,7 +5,7 @@ import {
   options as phalaOptions,
   signCertificate,
 } from '@phala/sdk'
-import {ApiPromise, WsProvider} from '@polkadot/api'
+import {ApiPromise, HttpProvider, WsProvider} from '@polkadot/api'
 import {Keyring} from '@polkadot/keyring'
 import {KeyringPair} from '@polkadot/keyring/types'
 import {EvmChain, PhalaChain} from './chain'
@@ -19,8 +19,8 @@ export enum Environment {
 }
 
 const rpcUrl: Record<Environment, string> = {
-  [Environment.MAINNET]: 'wss://api.phala.network/ws',
-  [Environment.TESTNET]: 'wss://poc5.phala.network/ws',
+  [Environment.MAINNET]: 'https://api.phala.network/ws',
+  [Environment.TESTNET]: 'https://poc5.phala.network/ws',
 }
 
 const contractId: Record<Environment, string> = {
@@ -56,8 +56,14 @@ export class Client {
     const environment = options?.environment ?? Environment.MAINNET
     this.#endpoint = options?.overrides?.endpoint ?? rpcUrl[environment]
     this.#contractId = options?.overrides?.contractId ?? contractId[environment]
+    const Provider = this.#endpoint.startsWith('http')
+      ? HttpProvider
+      : WsProvider
     this.#api = new ApiPromise(
-      phalaOptions({provider: new WsProvider(this.#endpoint), noInitWarn: true})
+      phalaOptions({
+        provider: new Provider(this.#endpoint),
+        noInitWarn: true,
+      })
     )
 
     this.#isReady = this.#initialize()
