@@ -6,7 +6,6 @@ import {Solution} from './types'
 
 const solution: Solution = [
   {
-    exeType: 'swap',
     exe: 'moonbeam_stellaswap',
     sourceChain: 'Moonbeam',
     destChain: 'Moonbeam',

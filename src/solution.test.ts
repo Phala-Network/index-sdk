@@ -81,7 +81,6 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exeType: 'swap',
         exe: 'moonbeam_stellaswap',
         sourceChain: 'Moonbeam',
         destChain: 'Moonbeam',
@@ -89,7 +88,6 @@ const cases: [any, boolean][] = [
         receiveAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
       },
       {
-        exeType: 'bridge',
         exe: 'moonbeam_bridge_to_phala',
         sourceChain: 'Moonbeam',
         destChain: 'Phala',
@@ -102,7 +100,6 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exeType: 'bridge_a',
         exe: 'moonbeam_bridge_to_phala',
         sourceChain: 'Moonbeam_a',
         destChain: 'Phala_a',
@@ -115,20 +112,6 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exeType: 'bridge',
-        exe: 'moonbeam_bridge_to_phala',
-        sourceChain: 'Moonbeam',
-        destChain: 'Moonbeam',
-        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receiveAsset: '0x0000',
-      },
-    ],
-    false,
-  ],
-  [
-    [
-      {
-        exeType: 'swap',
         exe: 'moonbeam_bridge_to_phala',
         sourceChain: 'Moonbeam',
         destChain: 'Moonbeam',
@@ -141,20 +124,6 @@ const cases: [any, boolean][] = [
   [
     [
       {
-        exeType: 'swap',
-        exe: 'moonbeam_bridge_to_phala',
-        sourceChain: 'Moonbeam',
-        destChain: 'Phala',
-        spendAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
-        receiveAsset: '0x0000',
-      },
-    ],
-    false,
-  ],
-  [
-    [
-      {
-        exeType: 'swap',
         exe: 'moonbeam_stellaswap',
         sourceChain: 'Moonbeam',
         destChain: 'Moonbeam',
@@ -162,7 +131,6 @@ const cases: [any, boolean][] = [
         receiveAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
       },
       {
-        exeType: 'bridge',
         exe: 'moonbeam_bridge_to_phala',
         sourceChain: 'Khala',
         destChain: 'Phala',

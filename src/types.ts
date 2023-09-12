@@ -14,7 +14,6 @@ export interface Chain {
 }
 
 export interface Step {
-  exeType: 'swap' | 'bridge'
   exe: string
   sourceChain: string
   destChain: string
@@ -25,7 +24,6 @@ export interface Step {
 export type Solution = Step[]
 
 interface TaskStep {
-  exeType: 'bridge' | 'swap'
   exe: string
   sourceChain: string
   destChain: string

@@ -4,7 +4,6 @@ import * as $ from 'subshape'
 
 const $solution = $.array(
   $.object(
-    $.field('exeType', $.str),
     $.field('exe', $.str),
     $.field('sourceChain', $.str),
     $.field('destChain', $.str),
@@ -26,7 +25,6 @@ export const createValidateFn = (chains: Chain[]) => {
     items: {
       type: 'object',
       properties: {
-        exeType: {type: 'string', enum: ['bridge', 'swap']},
         exe: {type: 'string', minLength: 1},
         sourceChain: {type: 'string', enum: chainName},
         destChain: {type: 'string', enum: chainName},
@@ -34,7 +32,6 @@ export const createValidateFn = (chains: Chain[]) => {
         receiveAsset: {type: 'string', pattern: hexPattern},
       },
       required: [
-        'exeType',
         'exe',
         'sourceChain',
         'destChain',
@@ -52,15 +49,11 @@ export const createValidateFn = (chains: Chain[]) => {
     let isValid = validate(solution)
 
     for (let i = 0; isValid && i < solution.length; i++) {
-      const {exeType, sourceChain, destChain, spendAsset, receiveAsset} =
-        solution[i]
+      const {sourceChain, destChain, spendAsset, receiveAsset} = solution[i]
+      const isSwap = sourceChain === destChain
       if (
-        // sourceChain and destChain must be different when exeType is bridge
-        (exeType === 'bridge' && sourceChain === destChain) ||
-        // sourceChain and destChain must be same when exeType is swap
-        (exeType === 'swap' && sourceChain !== destChain) ||
-        // spendAsset and receiveAsset must be different when exeType is swap
-        (exeType === 'swap' && spendAsset === receiveAsset) ||
+        // spendAsset and receiveAsset must be different when is swap
+        (isSwap && spendAsset === receiveAsset) ||
         // sourceChain must be same with destChain of previous step
         (i > 0 && sourceChain !== solution[i - 1].destChain)
       ) {
