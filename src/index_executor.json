@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x77b34d6c10e34fd48ca40f12db05695ace16db842a03c1be40fca3d430bd62ca",
+    "hash": "0x29350b0e440ce6f49b801ac0c43ee803b3c8976cf3002e9ffbb43dae4c7bdbae",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -1899,11 +1899,6 @@
         "def": {
           "composite": {
             "fields": [
-              {
-                "name": "exe_type",
-                "type": 3,
-                "typeName": "String"
-              },
               {
                 "name": "exe",
                 "type": 3,
