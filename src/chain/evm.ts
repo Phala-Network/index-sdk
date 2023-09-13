@@ -28,7 +28,7 @@ export class EvmChain extends BaseChain {
   }
 
   async getDeposit(
-    asset: Hex,
+    asset: string,
     amount: bigint,
     recipient: string,
     solution: Solution
