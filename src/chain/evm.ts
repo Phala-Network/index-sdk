@@ -1,7 +1,7 @@
 import {JsonRpcProvider, ethers} from 'ethers'
 import {Client} from '../client'
 import {Erc20__factory, Handler__factory} from '../ethersContracts'
-import {Chain, Solution} from '../types'
+import {Chain, Hex, Solution} from '../types'
 import {BaseChain} from './base'
 import {encodeSolution} from '../solution'
 import {generateId} from '../lib'
@@ -28,7 +28,7 @@ export class EvmChain extends BaseChain {
   }
 
   async getDeposit(
-    asset: string,
+    asset: Hex,
     amount: bigint,
     recipient: string,
     solution: Solution
@@ -41,6 +41,7 @@ export class EvmChain extends BaseChain {
       this.#provider
     )
     const id = generateId()
+    const isNativeAsset = asset === this.nativeAsset
     const worker = (await this.client.getWorker()).account20
     const tx = await handler.deposit.populateTransaction(
       asset,
@@ -48,7 +49,8 @@ export class EvmChain extends BaseChain {
       recipient,
       worker,
       id,
-      encodeSolution(solution)
+      encodeSolution(solution),
+      {value: isNativeAsset ? amount : undefined}
     )
     return {id, tx}
   }

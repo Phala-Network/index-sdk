@@ -17,6 +17,7 @@
     "dist/*"
   ],
   "scripts": {
+    "dev": "tsup --watch src",
     "build": "tsup",
     "coverage": "vitest run --coverage",
     "prepare": "typechain --target ethers-v6 --out-dir src/ethersContracts abi/*",
