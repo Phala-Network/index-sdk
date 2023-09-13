@@ -129,21 +129,21 @@ export class Client {
       this.#chainMap = new Map(this.#chains.map((chain) => [chain.name, chain]))
     }
 
-    {
-      const {output} = await this.#contract.query.getWorkerAccounts(
-        this.#pair.address,
-        {cert: this.#cert}
-      )
-      if (output.isOk) {
-        const workers = (output.asOk.toJSON() as any).ok
-        if (Array.isArray(workers)) {
-          this.workers = workers
-        }
-      }
-      if (this.workers.length === 0) {
-        throw new Error('Get workers error')
-      }
-    }
+    // {
+    //   const {output} = await this.#contract.query.getWorkerAccounts(
+    //     this.#pair.address,
+    //     {cert: this.#cert}
+    //   )
+    //   if (output.isOk) {
+    //     const workers = (output.asOk.toJSON() as any).ok
+    //     if (Array.isArray(workers)) {
+    //       this.workers = workers
+    //     }
+    //   }
+    //   if (this.workers.length === 0) {
+    //     throw new Error('Get workers error')
+    //   }
+    // }
 
     this.#validateSolution = createValidateFn(this.#chains)
     this.#initialized = true
