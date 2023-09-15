@@ -1,5 +1,5 @@
 import {generateId} from '../lib'
-import {encodeSolution} from '../solution'
+import {$solution} from '../solution'
 import {Solution} from '../types'
 import {SubstrateChain} from './substrate'
 
@@ -22,7 +22,7 @@ export class PhalaChain extends SubstrateChain {
       recipient,
       worker,
       id,
-      encodeSolution(solution)
+      $solution.encode(solution)
     )
     return {id, tx}
   }

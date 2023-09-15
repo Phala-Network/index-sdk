@@ -1,8 +1,5 @@
+import {u8aToHex} from '@polkadot/util'
 import {Hex} from './types'
-
-function u8aToHex(u8a: Uint8Array): Hex {
-  return `0x${Array.from(u8a, (x) => x.toString(16).padStart(2, '0')).join('')}`
-}
 
 export function generateId(length = 32): Hex {
   const array = new Uint8Array(length)

@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest'
-import {createValidateFn, encodeSolution} from './solution'
+import {$solution, createValidateFn} from './solution'
 import {Chain} from './types'
 
 const chains: Chain[] = [
@@ -146,6 +146,6 @@ for (let i = 0; i < cases.length; i++) {
   const [solution, valid] = cases[i]
   test(`Validate solution ${i + 1}`, () => {
     expect(validate(solution)).toBe(valid)
-    expect(encodeSolution(solution)).toMatchSnapshot()
+    expect($solution.encode(solution)).toMatchSnapshot()
   })
 }

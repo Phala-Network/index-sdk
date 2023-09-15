@@ -19,7 +19,7 @@ describe('Client', () => {
     vi.mock('./lib', () => ({
       generateId: vi.fn(
         () =>
-          '0x0000000000000000000000000000000000000000000000000000000000000000'
+          '0x0000000000000000000000000000000000000000000000000000000000000003'
       ),
     }))
   })
@@ -35,11 +35,17 @@ describe('Client', () => {
       'Client is not ready'
     )
     await client.isReady
+    expect(
+      await client.getSolution(
+        '0x0000000000000000000000000000000000000000000000000000000000000003'
+      )
+    ).toMatchObject(solution)
     expect(client.initialized).toEqual(true)
     expect(client.chains.length).toBeGreaterThan(0)
   })
 
   test('create ethereum', async () => {
+    vi.spyOn(Client.prototype, 'uploadSolution').mockResolvedValue()
     await client.isReady
     const ethereum = client.createEvmChain('Ethereum')
     const asset = ASSETS.Ethereum.PHA

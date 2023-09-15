@@ -1,8 +1,8 @@
 import Ajv, {JSONSchemaType} from 'ajv'
-import {Chain, Solution} from './types'
 import * as $ from 'subshape'
+import {Chain, Solution} from './types'
 
-const $solution = $.array(
+export const $solution = $.array(
   $.object(
     $.field('exe', $.str),
     $.field('sourceChain', $.str),
@@ -11,9 +11,6 @@ const $solution = $.array(
     $.field('receiveAsset', $.str)
   )
 )
-
-export const encodeSolution = (solution: Solution): Uint8Array =>
-  $solution.encode(solution)
 
 const hexPattern = '^0x[0-9a-fA-F]+$'
 

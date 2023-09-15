@@ -8,9 +8,10 @@ import {
 import {ApiPromise, HttpProvider, WsProvider} from '@polkadot/api'
 import {Keyring} from '@polkadot/keyring'
 import {KeyringPair} from '@polkadot/keyring/types'
+import {hexToU8a, u8aToHex} from '@polkadot/util'
 import {EvmChain, PhalaChain} from './chain'
 import abi from './index_executor.json'
-import {createValidateFn} from './solution'
+import {$solution, createValidateFn} from './solution'
 import {Chain, Task, Worker} from './types'
 
 export enum Environment {
@@ -27,7 +28,7 @@ const contractId: Record<Environment, string> = {
   [Environment.MAINNET]:
     '0x271f04685ff7dfab0e08957a1dbbb1cbc205125e7a04a538be364535b8c449f9',
   [Environment.TESTNET]:
-    '0x330cbb39e5545d47f7f5853ee810ab6e3e76f5b93844e29f79dff557b646f284',
+    '0x926c3897caa41f4e42a3b9386cc563c8d577986406f3f3f8c52f660b8073ea91',
 }
 
 export interface Options {
@@ -68,7 +69,7 @@ export class Client {
 
   // TODO: use as decorator when esbuild is ready
   #requireReady() {
-    if (this.#initialized === false) {
+    if (this.#initialized === false || this.#contract == null) {
       throw new Error('Client is not ready')
     }
   }
@@ -94,6 +95,45 @@ export class Client {
   validateSolution(solution: any): boolean {
     this.#requireReady()
     return this.#validateSolution(solution)
+  }
+
+  async uploadSolution(taskId: string, solution: Uint8Array) {
+    this.#requireReady()
+    if (this.#contract == null || this.#pair == null || this.#cert == null) {
+      throw new Error()
+    }
+    const {output} = await this.#contract.query.uploadSolution(
+      this.#pair.address,
+      {cert: this.#cert},
+      taskId,
+      u8aToHex(solution)
+    )
+    if (!output.isOk || output.asOk.toString() !== 'Ok') {
+      throw new Error(`Failed to upload solution: ${output.asOk.toString()}`)
+    }
+  }
+
+  async getSolution(taskId: string) {
+    this.#requireReady()
+    if (this.#contract == null || this.#pair == null || this.#cert == null) {
+      throw new Error()
+    }
+    const {output} = await this.#contract.query.getSolution(
+      this.#pair.address,
+      {cert: this.#cert},
+      taskId
+    )
+    let solution
+    if (output.isOk) {
+      try {
+        solution = $solution.decode(hexToU8a((output.asOk.toJSON() as any).ok))
+      } catch (err) {}
+    }
+    if (solution == null) {
+      throw new Error(`Failed to get solution`)
+    }
+
+    return solution
   }
 
   async #initialize() {

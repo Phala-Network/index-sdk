@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x29350b0e440ce6f49b801ac0c43ee803b3c8976cf3002e9ffbb43dae4c7bdbae",
+    "hash": "0x0b8799d83e8180dbc322749688440e70c9dc0bdc8d75c21ed01ed41674bc5d23",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -67,13 +67,13 @@
         "displayName": [
           "ChainExtension"
         ],
-        "type": 55
+        "type": 57
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 54
+        "type": 56
       },
       "maxEventTopics": 4,
       "timestamp": {
@@ -403,6 +403,41 @@
       {
         "args": [
           {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "TaskId"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "solution",
+            "type": {
+              "displayName": [
+                "Vec"
+              ],
+              "type": 8
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "upload_solution",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 19
+        },
+        "selector": "0x3b6c1d64"
+      },
+      {
+        "args": [
+          {
             "label": "running_type",
             "type": {
               "displayName": [
@@ -535,6 +570,32 @@
         "selector": "0x7c1ada8e"
       },
       {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "TaskId"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "get_solution",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 49
+        },
+        "selector": "0x0ace4c6d"
+      },
+      {
         "args": [],
         "default": false,
         "docs": [
@@ -548,7 +609,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 51
         },
         "selector": "0x15a5d20a"
       },
@@ -566,7 +627,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 52
+          "type": 54
         },
         "selector": "0xd9f7efbc"
       },
@@ -1192,26 +1253,34 @@
               },
               {
                 "index": 12,
-                "name": "FailedToReApplyNonce"
+                "name": "FailedToUploadSolution"
               },
               {
                 "index": 13,
-                "name": "FailedToReRunTask"
+                "name": "SolutionAlreadyExist"
               },
               {
                 "index": 14,
-                "name": "TaskNotFoundInStorage"
+                "name": "FailedToReApplyNonce"
               },
               {
                 "index": 15,
-                "name": "UnexpectedChainType"
+                "name": "FailedToReRunTask"
               },
               {
                 "index": 16,
-                "name": "ExecutorPaused"
+                "name": "TaskNotFoundInStorage"
               },
               {
                 "index": 17,
+                "name": "UnexpectedChainType"
+              },
+              {
+                "index": 18,
+                "name": "ExecutorPaused"
+              },
+              {
+                "index": 19,
                 "name": "ExecutorNotPaused"
               }
             ]
@@ -2216,7 +2285,7 @@
               {
                 "fields": [
                   {
-                    "type": 51
+                    "type": 39
                   }
                 ],
                 "index": 0,
@@ -2237,7 +2306,7 @@
         "params": [
           {
             "name": "T",
-            "type": 51
+            "type": 39
           },
           {
             "name": "E",
@@ -2253,20 +2322,41 @@
       "id": 51,
       "type": {
         "def": {
-          "composite": {
-            "fields": [
+          "variant": {
+            "variants": [
               {
-                "name": "chains",
-                "type": 4,
-                "typeName": "Vec<Chain>"
+                "fields": [
+                  {
+                    "type": 52
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
               }
             ]
           }
         },
+        "params": [
+          {
+            "name": "T",
+            "type": 52
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
         "path": [
-          "index_executor",
-          "registry",
-          "Registry"
+          "Result"
         ]
       }
     },
@@ -2288,7 +2378,7 @@
               {
                 "fields": [
                   {
-                    "type": 18
+                    "type": 21
                   }
                 ],
                 "index": 1,
@@ -2304,7 +2394,7 @@
           },
           {
             "name": "E",
-            "type": 18
+            "type": 21
           }
         ],
         "path": [
@@ -2314,6 +2404,69 @@
     },
     {
       "id": 53,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "chains",
+                "type": 4,
+                "typeName": "Vec<Chain>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "index_executor",
+          "registry",
+          "Registry"
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 55
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 55
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 55,
       "type": {
         "def": {
           "variant": {
@@ -2355,7 +2508,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 56,
       "type": {
         "def": {
           "composite": {
@@ -2375,7 +2528,7 @@
       }
     },
     {
-      "id": 55,
+      "id": 57,
       "type": {
         "def": {
           "variant": {}
