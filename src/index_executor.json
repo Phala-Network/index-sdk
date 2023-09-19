@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x0b8799d83e8180dbc322749688440e70c9dc0bdc8d75c21ed01ed41674bc5d23",
+    "hash": "0xa1a7e8dc5ef8061947a306c562fe0ad00bcd51347734393709783f4750d8aa0b",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -205,24 +205,6 @@
           "type": 19
         },
         "selector": "0x2941ef18"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [
-          " Save worker account information to remote storage."
-        ],
-        "label": "config_storage",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 19
-        },
-        "selector": "0x5f059a98"
       },
       {
         "args": [
@@ -557,7 +539,7 @@
         ],
         "default": false,
         "docs": [],
-        "label": "get_running_task",
+        "label": "get_task",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -567,7 +549,7 @@
           ],
           "type": 46
         },
-        "selector": "0x7c1ada8e"
+        "selector": "0x99491634"
       },
       {
         "args": [
@@ -630,24 +612,6 @@
           "type": 54
         },
         "selector": "0xd9f7efbc"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [
-          " Return worker accounts information that is free"
-        ],
-        "label": "get_free_worker_account",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 22
-        },
-        "selector": "0xf0d7723a"
       }
     ]
   },
@@ -1406,6 +1370,12 @@
                 "name": "Fetch"
               },
               {
+                "fields": [
+                  {
+                    "type": 1,
+                    "typeName": "[u8; 32]"
+                  }
+                ],
                 "index": 1,
                 "name": "Execute"
               }

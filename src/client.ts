@@ -215,7 +215,7 @@ export class Client {
     if (this.#contract == null || this.#cert == null || this.#pair == null) {
       throw new Error()
     }
-    const {output} = await this.#contract.query.getRunningTask(
+    const {output} = await this.#contract.query.getTask(
       this.#pair.address,
       {cert: this.#cert},
       id
