@@ -1,3 +1,4 @@
+import {u8aToHex} from '@polkadot/util'
 import {generateId} from '../lib'
 import {$solution} from '../solution'
 import {Solution} from '../types'
@@ -22,7 +23,7 @@ export class PhalaChain extends SubstrateChain {
       recipient,
       worker,
       id,
-      $solution.encode(solution)
+      u8aToHex($solution.encode(solution))
     )
     return {id, tx}
   }
