@@ -1,3 +1,5 @@
+import {decodeAddress} from '@polkadot/keyring'
+import {isHex, u8aToHex} from '@polkadot/util'
 import {JsonRpcProvider, ethers} from 'ethers'
 import {Client} from '../client'
 import {Erc20__factory, Handler__factory} from '../ethersContracts'
@@ -44,6 +46,9 @@ export class EvmChain extends BaseChain {
     await this.client.uploadSolution(id, $solution.encode(solution))
     const isNativeAsset = asset === this.nativeAsset
     const worker = (await this.client.getWorker()).account20
+    if (!isHex(recipient)) {
+      recipient = u8aToHex(decodeAddress(recipient))
+    }
     const tx = await handler.deposit.populateTransaction(
       asset,
       amount,
