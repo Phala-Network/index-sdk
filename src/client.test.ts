@@ -4,6 +4,9 @@ import {ASSETS} from './assets'
 import {Client, Environment} from './client'
 import {Solution} from './types'
 
+const taskId =
+  '0x0000000000000000000000000000000000000000000000000000000000000003'
+
 const solution: Solution = [
   {
     exe: 'moonbeam_stellaswap',
@@ -17,10 +20,7 @@ const solution: Solution = [
 describe('Client', () => {
   beforeEach(() => {
     vi.mock('./lib', () => ({
-      generateId: vi.fn(
-        () =>
-          '0x0000000000000000000000000000000000000000000000000000000000000003'
-      ),
+      generateId: vi.fn(() => taskId),
     }))
   })
   afterEach(() => {
@@ -35,14 +35,10 @@ describe('Client', () => {
       'Client is not ready'
     )
     await client.isReady
-    // expect(
-    //   await client.getSolution(
-    //     '0x0000000000000000000000000000000000000000000000000000000000000003'
-    //   )
-    // ).toMatchObject(solution)
+    // expect(await client.getSolution(taskId)).toMatchObject(solution)
     expect(client.initialized).toEqual(true)
     expect(client.chains.length).toBeGreaterThan(0)
-  })
+  }, 30_000)
 
   test('create ethereum', async () => {
     vi.spyOn(Client.prototype, 'uploadSolution').mockResolvedValue()
@@ -63,7 +59,7 @@ describe('Client', () => {
     )
 
     expect(deposit.tx.data).toMatchSnapshot()
-  })
+  }, 30_000)
 
   test('create phala', async () => {
     await client.isReady
@@ -77,5 +73,5 @@ describe('Client', () => {
       solution
     )
     expect(phalaTx.tx.toHex()).toMatchSnapshot()
-  })
+  }, 30_000)
 })

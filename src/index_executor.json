@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xa1a7e8dc5ef8061947a306c562fe0ad00bcd51347734393709783f4750d8aa0b",
+    "hash": "0x1228c6b41b1bcc866f1b727882d2f795a9fb4ceb1ac4c0b0162d40dd7185b966",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -150,6 +150,34 @@
           "type": 22
         },
         "selector": "0x777e1818"
+      },
+      {
+        "args": [
+          {
+            "label": "keys",
+            "type": {
+              "displayName": [
+                "Vec"
+              ],
+              "type": 11
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Debug only, remove before release"
+        ],
+        "label": "import_worker_keys",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 19
+        },
+        "selector": "0xd6fc968b"
       },
       {
         "args": [

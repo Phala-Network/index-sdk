@@ -1,6 +1,5 @@
-import {u8aToHex} from '@polkadot/util'
 import {generateId} from '../lib'
-import {$solution} from '../solution'
+import {processSolution} from '../solution'
 import {Solution} from '../types'
 import {SubstrateChain} from './substrate'
 
@@ -11,7 +10,7 @@ export class PhalaChain extends SubstrateChain {
     recipient: string,
     solution: Solution
   ) {
-    this.requireReady()
+    this.assertReady()
     if (!this.client.validateSolution(solution)) {
       throw new Error('Solution is invalid')
     }
@@ -23,7 +22,7 @@ export class PhalaChain extends SubstrateChain {
       recipient,
       worker,
       id,
-      u8aToHex($solution.encode(solution))
+      processSolution(this.client.chainMap, solution)
     )
     return {id, tx}
   }

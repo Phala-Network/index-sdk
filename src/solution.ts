@@ -1,16 +1,78 @@
+import {u8aToHex} from '@polkadot/util'
 import Ajv, {JSONSchemaType} from 'ajv'
 import * as $ from 'subshape'
-import {Chain, Solution} from './types'
+import {Chain, Hex, Solution, Step} from './types'
 
-export const $solution = $.array(
-  $.object(
-    $.field('exe', $.str),
-    $.field('sourceChain', $.str),
-    $.field('destChain', $.str),
-    $.field('spendAsset', $.str),
-    $.field('receiveAsset', $.str)
-  )
+const $single = $.object(
+  $.field('exe', $.str),
+  $.field('sourceChain', $.str),
+  $.field('destChain', $.str),
+  $.field('spendAsset', $.str),
+  $.field('receiveAsset', $.str)
 )
+
+const $batch = $.array($single)
+
+interface Single extends Step {
+  _tag: 'single'
+}
+
+class Batch extends Array<Step> {
+  _tag = 'batch' as const
+}
+
+const $multiStep = $.taggedUnion('_tag', [
+  $.variant('single', $single),
+  $.variant('batch', $batch),
+])
+
+export const $solution = $.array($multiStep)
+
+export const processSolution = (
+  chainMap: Map<string, Chain>,
+  solution: Solution
+): Hex => {
+  const mergedSteps: Array<Single | Batch> = []
+  let batch: Batch = new Batch()
+
+  const pushSingleOrBatch = (item: Step | Batch) => {
+    if (Array.isArray(item)) {
+      if (item.length === 0) return
+      if (item.length === 1) {
+        item = item[0]
+      } else {
+        mergedSteps.push(item)
+        return
+      }
+    }
+    mergedSteps.push({_tag: 'single', ...item})
+  }
+
+  for (const step of solution) {
+    const chain = chainMap.get(step.sourceChain) as Chain
+
+    const isEvm = chain.chainType === 'Evm'
+    const isSameChain =
+      batch.length > 0 &&
+      step.sourceChain === batch[batch.length - 1].sourceChain
+
+    if (isEvm && (batch.length === 0 || isSameChain)) {
+      batch.push(step)
+    } else {
+      pushSingleOrBatch(batch)
+      batch = new Batch()
+      if (isEvm) {
+        batch.push(step)
+      } else {
+        pushSingleOrBatch(step)
+      }
+    }
+  }
+
+  pushSingleOrBatch(batch)
+
+  return u8aToHex($solution.encode(mergedSteps))
+}
 
 const hexPattern = '^0x[0-9a-fA-F]+$'
 

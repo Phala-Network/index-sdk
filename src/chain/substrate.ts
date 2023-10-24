@@ -1,23 +1,23 @@
 import {ApiPromise, HttpProvider} from '@polkadot/api'
+import {SubmittableExtrinsic} from '@polkadot/api/types'
+import {ISubmittableResult} from '@polkadot/types/types'
 import {Client} from '../client'
 import {Chain, Solution} from '../types'
 import {BaseChain} from './base'
-import {SubmittableExtrinsic} from '@polkadot/api/types'
-import {ISubmittableResult} from '@polkadot/types/types'
 
 export abstract class SubstrateChain extends BaseChain {
-  #initialized = false
+  initialized = false
   protected readonly api: ApiPromise
   constructor(chain: Chain, client: Client) {
     super(chain, client)
     const provider = new HttpProvider(this.endpoint)
     this.api = new ApiPromise({provider, noInitWarn: true})
     this.api.isReady.then(() => {
-      this.#initialized = true
+      this.initialized = true
     })
   }
-  protected requireReady() {
-    if (!this.#initialized) {
+  protected assertReady() {
+    if (!this.initialized) {
       throw new Error('Chain is not ready')
     }
   }
