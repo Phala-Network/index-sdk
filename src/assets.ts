@@ -32,4 +32,7 @@ export const ASSETS = {
     DOT: '0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF',
     USDT: '0xFFFFFFFF000000000000000000000001000007C0',
   },
+  Polkadot: {
+    DOT: '0x0000',
+  },
 }
