@@ -26,9 +26,10 @@ const $multiStep = $.taggedUnion('_tag', [
   $.variant('batch', $batch),
 ])
 
-const $legacySolution = $.array($single)
+export const $legacySolution = $.array($single)
 
-const $solution = $.array($multiStep)
+// export const $solution = $.array($multiStep)
+export const $solution = $legacySolution
 
 export const processSolution = (
   chainMap: Map<string, Chain>,
