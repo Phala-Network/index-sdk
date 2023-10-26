@@ -26,52 +26,56 @@ const $multiStep = $.taggedUnion('_tag', [
   $.variant('batch', $batch),
 ])
 
-export const $solution = $.array($multiStep)
+const $legacySolution = $.array($single)
+
+const $solution = $.array($multiStep)
 
 export const processSolution = (
   chainMap: Map<string, Chain>,
   solution: Solution
 ): Hex => {
-  const mergedSteps: Array<Single | Batch> = []
-  let batch: Batch = new Batch()
+  // FIXME: remove legacy solution when https://github.com/Phala-Network/index-contract/pull/92 is merged
+  return u8aToHex($legacySolution.encode(solution))
+  // const mergedSteps: Array<Single | Batch> = []
+  // let batch: Batch = new Batch()
 
-  const pushSingleOrBatch = (item: Step | Batch) => {
-    if (Array.isArray(item)) {
-      if (item.length === 0) return
-      if (item.length === 1) {
-        item = item[0]
-      } else {
-        mergedSteps.push(item)
-        return
-      }
-    }
-    mergedSteps.push({_tag: 'single', ...item})
-  }
+  // const pushSingleOrBatch = (item: Step | Batch) => {
+  //   if (Array.isArray(item)) {
+  //     if (item.length === 0) return
+  //     if (item.length === 1) {
+  //       item = item[0]
+  //     } else {
+  //       mergedSteps.push(item)
+  //       return
+  //     }
+  //   }
+  //   mergedSteps.push({_tag: 'single', ...item})
+  // }
 
-  for (const step of solution) {
-    const chain = chainMap.get(step.sourceChain) as Chain
+  // for (const step of solution) {
+  //   const chain = chainMap.get(step.sourceChain) as Chain
 
-    const isEvm = chain.chainType === 'Evm'
-    const isSameChain =
-      batch.length > 0 &&
-      step.sourceChain === batch[batch.length - 1].sourceChain
+  //   const isEvm = chain.chainType === 'Evm'
+  //   const isSameChain =
+  //     batch.length > 0 &&
+  //     step.sourceChain === batch[batch.length - 1].sourceChain
 
-    if (isEvm && (batch.length === 0 || isSameChain)) {
-      batch.push(step)
-    } else {
-      pushSingleOrBatch(batch)
-      batch = new Batch()
-      if (isEvm) {
-        batch.push(step)
-      } else {
-        pushSingleOrBatch(step)
-      }
-    }
-  }
+  //   if (isEvm && (batch.length === 0 || isSameChain)) {
+  //     batch.push(step)
+  //   } else {
+  //     pushSingleOrBatch(batch)
+  //     batch = new Batch()
+  //     if (isEvm) {
+  //       batch.push(step)
+  //     } else {
+  //       pushSingleOrBatch(step)
+  //     }
+  //   }
+  // }
 
-  pushSingleOrBatch(batch)
+  // pushSingleOrBatch(batch)
 
-  return u8aToHex($solution.encode(mergedSteps))
+  // return u8aToHex($solution.encode(mergedSteps))
 }
 
 const hexPattern = '^0x[0-9a-fA-F]+$'
