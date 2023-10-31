@@ -50,7 +50,7 @@ const solution = [
 ]
 
 const phala = client.createPhalaChain('Phala')
-await phala.isReady
+await phala.isReady // necessary for substrate chains
 const deposit = await phala.getDeposit(
   ASSETS.Phala.PHA,
   1_000_000_000_000n,

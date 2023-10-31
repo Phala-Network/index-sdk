@@ -15,14 +15,14 @@ export class PhalaChain extends SubstrateChain {
       throw new Error('Solution is invalid')
     }
     const id = generateId()
-    const worker = (await this.client.getWorker()).account32
+    const worker = this.client.getWorker().account32
     const tx = this.api.tx.palletIndex.depositTask(
       asset,
       amount,
       recipient,
       worker,
       id,
-      processSolution(this.client.chainMap, solution)
+      processSolution(this.client, solution, recipient)
     )
     return {id, tx}
   }

@@ -83,13 +83,13 @@ export class Client {
     return false
   }
 
-  async uploadSolution(taskId: string, solution: Solution) {
+  async uploadSolution(taskId: string, solution: Solution, recipient: string) {
     this.assertReady()
     const {output} = await this.contract.query.uploadSolution(
       this.pair.address,
       {cert: this.cert},
       taskId,
-      processSolution(this.chainMap, solution)
+      processSolution(this, solution, recipient)
     )
     if (!output.isOk || output.asOk.toString() !== 'Ok') {
       throw new Error(`Failed to upload solution: ${output.asOk.toString()}`)
@@ -209,7 +209,7 @@ export class Client {
     return task
   }
 
-  async getWorker(): Promise<Worker> {
+  getWorker(): Worker {
     this.assertReady()
     // const {output} = this.contract.query.getFreeWorkerAccount(
     //   this.pair.address,

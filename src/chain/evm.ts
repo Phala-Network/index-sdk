@@ -42,9 +42,9 @@ export class EvmChain extends BaseChain {
       this.provider
     )
     const id = generateId()
-    await this.client.uploadSolution(id, solution)
+    await this.client.uploadSolution(id, solution, recipient)
     const isNativeAsset = asset === this.nativeAsset
-    const worker = (await this.client.getWorker()).account20
+    const worker = this.client.getWorker().account20
     if (!isHex(recipient)) {
       recipient = u8aToHex(decodeAddress(recipient))
     }

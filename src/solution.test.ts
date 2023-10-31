@@ -117,7 +117,13 @@ describe('Solution', async () => {
       const isValid = client.validateSolution(solution)
       expect(isValid).toMatchSnapshot()
       if (isValid) {
-        expect(processSolution(client.chainMap, solution)).toMatchSnapshot()
+        expect(
+          processSolution(
+            client,
+            solution,
+            '0x0000000000000000000000000000000000000000'
+          )
+        ).toMatchSnapshot()
       }
     })
   }
