@@ -79,7 +79,7 @@ export const processSolution = (
         ? destChain.handlerContract
         : workerAccountInfo.account32
     } else {
-      // For non-bridge operatoions, because we don't batch call in Sub chains, so recipient should
+      // For non-bridge operations, because we don't batch call in Sub chains, so recipient should
       // be worker account on source chain, or should be Handler address on source chain
       stepRecipient = isToEvm
         ? sourceChain.handlerContract
