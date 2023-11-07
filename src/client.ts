@@ -221,8 +221,8 @@ export class Client {
     // TODO: remove hardcore worker
     return {
       account32:
-        '0x04dba0677fc274ffaccc0fa1030a66b171d1da9226d2bb9d152654e6a746f276',
-      account20: '0xbf526928373748b00763875448ee905367d97f96',
+        '0x641017970d80738617e4e9b9b01d8d2ed5bc3d881a60e5105620abfbf5cb1331',
+      account20: '0x5cddb3ad187065e0122f3f46d13ad6ca486e4644',
     }
   }
 }
