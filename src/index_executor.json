@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x1228c6b41b1bcc866f1b727882d2f795a9fb4ceb1ac4c0b0162d40dd7185b966",
+    "hash": "0x8090056abd52c260128588b1d1b44d6a3f78d789862d10ea944dd7137674f13a",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -16,9 +16,7 @@
   "contract": {
     "name": "index_executor",
     "version": "0.1.0",
-    "authors": [
-      "Phala Network"
-    ],
+    "authors": ["Phala Network"],
     "repository": "https://github.com/Phala-Network/index-contract",
     "homepage": "https://phala.network/",
     "license": "Apache 2.0"
@@ -28,16 +26,11 @@
       {
         "args": [],
         "default": false,
-        "docs": [
-          "Create an Executor entity"
-        ],
+        "docs": ["Create an Executor entity"],
         "label": "default",
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink_primitives",
-            "ConstructorResult"
-          ],
+          "displayName": ["ink_primitives", "ConstructorResult"],
           "type": 16
         },
         "selector": "0xed4b9d1b"
@@ -46,64 +39,45 @@
     "docs": [],
     "environment": {
       "accountId": {
-        "displayName": [
-          "AccountId"
-        ],
+        "displayName": ["AccountId"],
         "type": 0
       },
       "balance": {
-        "displayName": [
-          "Balance"
-        ],
+        "displayName": ["Balance"],
         "type": 24
       },
       "blockNumber": {
-        "displayName": [
-          "BlockNumber"
-        ],
+        "displayName": ["BlockNumber"],
         "type": 6
       },
       "chainExtension": {
-        "displayName": [
-          "ChainExtension"
-        ],
-        "type": 57
+        "displayName": ["ChainExtension"],
+        "type": 67
       },
       "hash": {
-        "displayName": [
-          "Hash"
-        ],
-        "type": 56
+        "displayName": ["Hash"],
+        "type": 66
       },
       "maxEventTopics": 4,
       "timestamp": {
-        "displayName": [
-          "Timestamp"
-        ],
-        "type": 38
+        "displayName": ["Timestamp"],
+        "type": 35
       }
     },
     "events": [
       {
         "args": [],
-        "docs": [
-          "Event emitted when executor is configured."
-        ],
+        "docs": ["Event emitted when executor is configured."],
         "label": "Configured"
       },
       {
         "args": [],
-        "docs": [
-          "Event emitted when worker account is set to storage."
-        ],
+        "docs": ["Event emitted when worker account is set to storage."],
         "label": "WorkerSetToStorage"
       }
     ],
     "lang_error": {
-      "displayName": [
-        "ink",
-        "LangError"
-      ],
+      "displayName": ["ink", "LangError"],
       "type": 18
     },
     "messages": [
@@ -112,9 +86,7 @@
           {
             "label": "new_admin",
             "type": {
-              "displayName": [
-                "AccountId"
-              ],
+              "displayName": ["AccountId"],
               "type": 0
             }
           }
@@ -125,10 +97,7 @@
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x107e33ea"
@@ -136,17 +105,12 @@
       {
         "args": [],
         "default": false,
-        "docs": [
-          " Debug only, remove before release"
-        ],
+        "docs": [" Debug only, remove before release"],
         "label": "export_worker_keys",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 22
         },
         "selector": "0x777e1818"
@@ -156,25 +120,18 @@
           {
             "label": "keys",
             "type": {
-              "displayName": [
-                "Vec"
-              ],
+              "displayName": ["Vec"],
               "type": 11
             }
           }
         ],
         "default": false,
-        "docs": [
-          " Debug only, remove before release"
-        ],
+        "docs": [" Debug only, remove before release"],
         "label": "import_worker_keys",
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0xd6fc968b"
@@ -184,52 +141,39 @@
           {
             "label": "storage_url",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           },
           {
             "label": "storage_key",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           },
           {
             "label": "keystore_account",
             "type": {
-              "displayName": [
-                "AccountId"
-              ],
+              "displayName": ["AccountId"],
               "type": 0
             }
           },
           {
             "label": "import_key",
             "type": {
-              "displayName": [
-                "bool"
-              ],
+              "displayName": ["bool"],
               "type": 15
             }
           }
         ],
         "default": false,
-        "docs": [
-          " FIXME: Pass the key implicitly"
-        ],
+        "docs": [" FIXME: Pass the key implicitly"],
         "label": "config_engine",
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x2941ef18"
@@ -239,27 +183,21 @@
           {
             "label": "chain",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           },
           {
             "label": "endpoint",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           },
           {
             "label": "indexer",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           }
@@ -270,10 +208,7 @@
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x562de86b"
@@ -286,10 +221,7 @@
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x50fc6b0f"
@@ -302,10 +234,7 @@
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0xe8a57784"
@@ -322,9 +251,7 @@
           {
             "label": "chain",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           },
@@ -345,9 +272,7 @@
           {
             "label": "amount",
             "type": {
-              "displayName": [
-                "u128"
-              ],
+              "displayName": ["u128"],
               "type": 24
             }
           }
@@ -360,10 +285,7 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x15b7811e"
@@ -380,18 +302,14 @@
           {
             "label": "chain",
             "type": {
-              "displayName": [
-                "String"
-              ],
+              "displayName": ["String"],
               "type": 3
             }
           },
           {
             "label": "id",
             "type": {
-              "displayName": [
-                "TaskId"
-              ],
+              "displayName": ["TaskId"],
               "type": 1
             }
           }
@@ -402,10 +320,7 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x9e674f68"
@@ -415,18 +330,14 @@
           {
             "label": "id",
             "type": {
-              "displayName": [
-                "TaskId"
-              ],
+              "displayName": ["TaskId"],
               "type": 1
             }
           },
           {
             "label": "solution",
             "type": {
-              "displayName": [
-                "Vec"
-              ],
+              "displayName": ["Vec"],
               "type": 8
             }
           }
@@ -437,10 +348,7 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0x3b6c1d64"
@@ -448,12 +356,38 @@
       {
         "args": [
           {
+            "label": "worker",
+            "type": {
+              "displayName": [],
+              "type": 1
+            }
+          },
+          {
+            "label": "solution",
+            "type": {
+              "displayName": ["Vec"],
+              "type": 8
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "simulate_solution",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 25
+        },
+        "selector": "0x80220d89"
+      },
+      {
+        "args": [
+          {
             "label": "running_type",
             "type": {
-              "displayName": [
-                "RunningType"
-              ],
-              "type": 25
+              "displayName": ["RunningType"],
+              "type": 36
             }
           }
         ],
@@ -463,10 +397,7 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0xb95b5eb3"
@@ -476,9 +407,7 @@
           {
             "label": "id",
             "type": {
-              "displayName": [
-                "TaskId"
-              ],
+              "displayName": ["TaskId"],
               "type": 1
             }
           }
@@ -493,10 +422,7 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
+          "displayName": ["ink", "MessageResult"],
           "type": 19
         },
         "selector": "0xaad7141b"
@@ -504,36 +430,26 @@
       {
         "args": [],
         "default": false,
-        "docs": [
-          " Return config information"
-        ],
+        "docs": [" Return config information"],
         "label": "get_config",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 26
+          "displayName": ["ink", "MessageResult"],
+          "type": 37
         },
         "selector": "0xd0707806"
       },
       {
         "args": [],
         "default": false,
-        "docs": [
-          " Return executor status"
-        ],
+        "docs": [" Return executor status"],
         "label": "is_running",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 30
+          "displayName": ["ink", "MessageResult"],
+          "type": 41
         },
         "selector": "0x1b0e6452"
       },
@@ -545,11 +461,8 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 32
+          "displayName": ["ink", "MessageResult"],
+          "type": 43
         },
         "selector": "0x0b07d714"
       },
@@ -558,9 +471,7 @@
           {
             "label": "id",
             "type": {
-              "displayName": [
-                "TaskId"
-              ],
+              "displayName": ["TaskId"],
               "type": 1
             }
           }
@@ -571,11 +482,8 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 46
+          "displayName": ["ink", "MessageResult"],
+          "type": 56
         },
         "selector": "0x99491634"
       },
@@ -584,9 +492,7 @@
           {
             "label": "id",
             "type": {
-              "displayName": [
-                "TaskId"
-              ],
+              "displayName": ["TaskId"],
               "type": 1
             }
           }
@@ -597,47 +503,34 @@
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 49
+          "displayName": ["ink", "MessageResult"],
+          "type": 59
         },
         "selector": "0x0ace4c6d"
       },
       {
         "args": [],
         "default": false,
-        "docs": [
-          " Returs the interior registry, callable to all"
-        ],
+        "docs": [" Returs the interior registry, callable to all"],
         "label": "get_registry",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 51
+          "displayName": ["ink", "MessageResult"],
+          "type": 61
         },
         "selector": "0x15a5d20a"
       },
       {
         "args": [],
         "default": false,
-        "docs": [
-          " Return whole worker account information"
-        ],
+        "docs": [" Return whole worker account information"],
         "label": "get_worker_accounts",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 54
+          "displayName": ["ink", "MessageResult"],
+          "type": 64
         },
         "selector": "0xd9f7efbc"
       }
@@ -772,11 +665,7 @@
             ]
           }
         },
-        "path": [
-          "ink_primitives",
-          "types",
-          "AccountId"
-        ]
+        "path": ["ink_primitives", "types", "AccountId"]
       }
     },
     {
@@ -865,11 +754,7 @@
             ]
           }
         },
-        "path": [
-          "index_executor",
-          "chain",
-          "Chain"
-        ]
+        "path": ["index_executor", "chain", "Chain"]
       }
     },
     {
@@ -897,11 +782,7 @@
             ]
           }
         },
-        "path": [
-          "index_executor",
-          "chain",
-          "ChainType"
-        ]
+        "path": ["index_executor", "chain", "ChainType"]
       }
     },
     {
@@ -942,9 +823,7 @@
             "type": 10
           }
         ],
-        "path": [
-          "Option"
-        ]
+        "path": ["Option"]
       }
     },
     {
@@ -964,11 +843,7 @@
             ]
           }
         },
-        "path": [
-          "index_executor",
-          "chain",
-          "ForeignAssetModule"
-        ]
+        "path": ["index_executor", "chain", "ForeignAssetModule"]
       }
     },
     {
@@ -1010,11 +885,7 @@
             ]
           }
         },
-        "path": [
-          "index_executor",
-          "account",
-          "AccountInfo"
-        ]
+        "path": ["index_executor", "account", "AccountInfo"]
       }
     },
     {
@@ -1073,9 +944,7 @@
             "type": 18
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
@@ -1099,10 +968,7 @@
             ]
           }
         },
-        "path": [
-          "ink_primitives",
-          "LangError"
-        ]
+        "path": ["ink_primitives", "LangError"]
       }
     },
     {
@@ -1142,9 +1008,7 @@
             "type": 18
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
@@ -1184,9 +1048,7 @@
             "type": 21
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
@@ -1249,40 +1111,48 @@
               },
               {
                 "index": 13,
-                "name": "SolutionAlreadyExist"
+                "name": "FailedToDecodeSolution"
               },
               {
                 "index": 14,
-                "name": "FailedToReApplyNonce"
+                "name": "InvalidSolutionData"
               },
               {
                 "index": 15,
-                "name": "FailedToReRunTask"
+                "name": "SolutionAlreadyExist"
               },
               {
                 "index": 16,
-                "name": "TaskNotFoundInStorage"
+                "name": "FailedToReApplyNonce"
               },
               {
                 "index": 17,
-                "name": "UnexpectedChainType"
+                "name": "FailedToReRunTask"
               },
               {
                 "index": 18,
-                "name": "ExecutorPaused"
+                "name": "FailedToSimulateSolution"
               },
               {
                 "index": 19,
+                "name": "TaskNotFoundInStorage"
+              },
+              {
+                "index": 20,
+                "name": "UnexpectedChainType"
+              },
+              {
+                "index": 21,
+                "name": "ExecutorPaused"
+              },
+              {
+                "index": 22,
                 "name": "ExecutorNotPaused"
               }
             ]
           }
         },
-        "path": [
-          "index_executor",
-          "index_executor",
-          "Error"
-        ]
+        "path": ["index_executor", "index_executor", "Error"]
       }
     },
     {
@@ -1322,9 +1192,7 @@
             "type": 18
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
@@ -1364,9 +1232,7 @@
             "type": 21
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
@@ -1379,6 +1245,255 @@
     },
     {
       "id": 25,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 26
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 26
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 27
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 27
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 28
+          }
+        }
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "action_extra_info",
+                "type": 29,
+                "typeName": "ActionExtraInfo"
+              },
+              {
+                "name": "gas_limit",
+                "type": 32,
+                "typeName": "Option<U256>"
+              },
+              {
+                "name": "gas_price",
+                "type": 32,
+                "typeName": "Option<U256>"
+              },
+              {
+                "name": "native_price_in_usd",
+                "type": 6,
+                "typeName": "u32"
+              },
+              {
+                "name": "tx_fee_in_usd",
+                "type": 6,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "step", "StepSimulateResult"]
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "extra_proto_fee_in_usd",
+                "type": 6,
+                "typeName": "u32"
+              },
+              {
+                "name": "const_proto_fee_in_usd",
+                "type": 6,
+                "typeName": "u32"
+              },
+              {
+                "name": "percentage_proto_fee",
+                "type": 30,
+                "typeName": "Permill"
+              },
+              {
+                "name": "confirm_time_in_sec",
+                "type": 31,
+                "typeName": "u16"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "actions", "ActionExtraInfo"]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 6,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": ["sp_arithmetic", "per_things", "Permill"]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "primitive": "u16"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 33
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 33
+          }
+        ],
+        "path": ["Option"]
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 34,
+                "typeName": "[u64; 4]"
+              }
+            ]
+          }
+        },
+        "path": ["primitive_types", "U256"]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "array": {
+            "len": 4,
+            "type": 35
+          }
+        }
+      }
+    },
+    {
+      "id": 35,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 36,
       "type": {
         "def": {
           "variant": {
@@ -1410,470 +1525,7 @@
             ]
           }
         },
-        "path": [
-          "index_executor",
-          "index_executor",
-          "RunningType"
-        ]
-      }
-    },
-    {
-      "id": 26,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 27
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 27
-          },
-          {
-            "name": "E",
-            "type": 18
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 27,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 28
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 21
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 28
-          },
-          {
-            "name": "E",
-            "type": 21
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 28,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 29
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 29
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 29,
-      "type": {
-        "def": {
-          "composite": {
-            "fields": [
-              {
-                "name": "storage_url",
-                "type": 3,
-                "typeName": "String"
-              },
-              {
-                "name": "storage_key",
-                "type": 3,
-                "typeName": "String"
-              }
-            ]
-          }
-        },
-        "path": [
-          "index_executor",
-          "index_executor",
-          "Config"
-        ]
-      }
-    },
-    {
-      "id": 30,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 31
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 31
-          },
-          {
-            "name": "E",
-            "type": 18
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 31,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 15
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 21
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 15
-          },
-          {
-            "name": "E",
-            "type": 21
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 32,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 33
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 33
-          },
-          {
-            "name": "E",
-            "type": 18
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 33,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 34
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 21
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 34
-          },
-          {
-            "name": "E",
-            "type": 21
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 34,
-      "type": {
-        "def": {
-          "sequence": {
-            "type": 35
-          }
-        }
-      }
-    },
-    {
-      "id": 35,
-      "type": {
-        "def": {
-          "composite": {
-            "fields": [
-              {
-                "name": "id",
-                "type": 1,
-                "typeName": "TaskId"
-              },
-              {
-                "name": "worker",
-                "type": 1,
-                "typeName": "[u8; 32]"
-              },
-              {
-                "name": "status",
-                "type": 36,
-                "typeName": "TaskStatus"
-              },
-              {
-                "name": "source",
-                "type": 3,
-                "typeName": "String"
-              },
-              {
-                "name": "amount",
-                "type": 24,
-                "typeName": "u128"
-              },
-              {
-                "name": "claim_nonce",
-                "type": 37,
-                "typeName": "Option<u64>"
-              },
-              {
-                "name": "claim_tx",
-                "type": 39,
-                "typeName": "Option<Vec<u8>>"
-              },
-              {
-                "name": "steps",
-                "type": 40,
-                "typeName": "Vec<Step>"
-              },
-              {
-                "name": "merged_steps",
-                "type": 43,
-                "typeName": "Vec<MultiStep>"
-              },
-              {
-                "name": "execute_txs",
-                "type": 45,
-                "typeName": "Vec<Vec<u8>>"
-              },
-              {
-                "name": "execute_index",
-                "type": 2,
-                "typeName": "u8"
-              },
-              {
-                "name": "sender",
-                "type": 8,
-                "typeName": "Vec<u8>"
-              },
-              {
-                "name": "recipient",
-                "type": 8,
-                "typeName": "Vec<u8>"
-              },
-              {
-                "name": "retry_counter",
-                "type": 2,
-                "typeName": "u8"
-              }
-            ]
-          }
-        },
-        "path": [
-          "index_executor",
-          "task",
-          "Task"
-        ]
-      }
-    },
-    {
-      "id": 36,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "Actived"
-              },
-              {
-                "index": 1,
-                "name": "Initialized"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8,
-                    "typeName": "Vec<u8>"
-                  }
-                ],
-                "index": 2,
-                "name": "Claimed"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 2,
-                    "typeName": "u8"
-                  },
-                  {
-                    "type": 37,
-                    "typeName": "Option<u64>"
-                  }
-                ],
-                "index": 3,
-                "name": "Executing"
-              },
-              {
-                "index": 4,
-                "name": "Completed"
-              }
-            ]
-          }
-        },
-        "path": [
-          "index_executor",
-          "task",
-          "TaskStatus"
-        ]
+        "path": ["index_executor", "index_executor", "RunningType"]
       }
     },
     {
@@ -1883,17 +1535,22 @@
           "variant": {
             "variants": [
               {
-                "index": 0,
-                "name": "None"
-              },
-              {
                 "fields": [
                   {
                     "type": 38
                   }
                 ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
                 "index": 1,
-                "name": "Some"
+                "name": "Err"
               }
             ]
           }
@@ -1902,380 +1559,17 @@
           {
             "name": "T",
             "type": 38
+          },
+          {
+            "name": "E",
+            "type": 18
           }
         ],
-        "path": [
-          "Option"
-        ]
+        "path": ["Result"]
       }
     },
     {
       "id": 38,
-      "type": {
-        "def": {
-          "primitive": "u64"
-        }
-      }
-    },
-    {
-      "id": 39,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 40,
-      "type": {
-        "def": {
-          "sequence": {
-            "type": 41
-          }
-        }
-      }
-    },
-    {
-      "id": 41,
-      "type": {
-        "def": {
-          "composite": {
-            "fields": [
-              {
-                "name": "exe",
-                "type": 3,
-                "typeName": "String"
-              },
-              {
-                "name": "source_chain",
-                "type": 3,
-                "typeName": "String"
-              },
-              {
-                "name": "dest_chain",
-                "type": 3,
-                "typeName": "String"
-              },
-              {
-                "name": "spend_asset",
-                "type": 8,
-                "typeName": "Vec<u8>"
-              },
-              {
-                "name": "receive_asset",
-                "type": 8,
-                "typeName": "Vec<u8>"
-              },
-              {
-                "name": "sender",
-                "type": 39,
-                "typeName": "Option<Vec<u8>>"
-              },
-              {
-                "name": "recipient",
-                "type": 39,
-                "typeName": "Option<Vec<u8>>"
-              },
-              {
-                "name": "spend_amount",
-                "type": 42,
-                "typeName": "Option<u128>"
-              },
-              {
-                "name": "origin_balance",
-                "type": 42,
-                "typeName": "Option<u128>"
-              },
-              {
-                "name": "nonce",
-                "type": 37,
-                "typeName": "Option<u64>"
-              }
-            ]
-          }
-        },
-        "path": [
-          "index_executor",
-          "step",
-          "Step"
-        ]
-      }
-    },
-    {
-      "id": 42,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 24
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 24
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 43,
-      "type": {
-        "def": {
-          "sequence": {
-            "type": 44
-          }
-        }
-      }
-    },
-    {
-      "id": 44,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 41,
-                    "typeName": "Step"
-                  }
-                ],
-                "index": 0,
-                "name": "Single"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 40,
-                    "typeName": "Vec<Step>"
-                  }
-                ],
-                "index": 1,
-                "name": "Batch"
-              }
-            ]
-          }
-        },
-        "path": [
-          "index_executor",
-          "step",
-          "MultiStep"
-        ]
-      }
-    },
-    {
-      "id": 45,
-      "type": {
-        "def": {
-          "sequence": {
-            "type": 8
-          }
-        }
-      }
-    },
-    {
-      "id": 46,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 47
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 47
-          },
-          {
-            "name": "E",
-            "type": 18
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 47,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 48
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 21
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 48
-          },
-          {
-            "name": "E",
-            "type": 21
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 48,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 35
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 35
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 49,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 50
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 50
-          },
-          {
-            "name": "E",
-            "type": 18
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 50,
       "type": {
         "def": {
           "variant": {
@@ -2311,13 +1605,64 @@
             "type": 21
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
-      "id": 51,
+      "id": 39,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 40
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 40
+          }
+        ],
+        "path": ["Option"]
+      }
+    },
+    {
+      "id": 40,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "storage_url",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "storage_key",
+                "type": 3,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "index_executor", "Config"]
+      }
+    },
+    {
+      "id": 41,
       "type": {
         "def": {
           "variant": {
@@ -2325,7 +1670,7 @@
               {
                 "fields": [
                   {
-                    "type": 52
+                    "type": 42
                   }
                 ],
                 "index": 0,
@@ -2346,20 +1691,18 @@
         "params": [
           {
             "name": "T",
-            "type": 52
+            "type": 42
           },
           {
             "name": "E",
             "type": 18
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
-      "id": 52,
+      "id": 42,
       "type": {
         "def": {
           "variant": {
@@ -2367,7 +1710,7 @@
               {
                 "fields": [
                   {
-                    "type": 53
+                    "type": 15
                   }
                 ],
                 "index": 0,
@@ -2388,41 +1731,18 @@
         "params": [
           {
             "name": "T",
-            "type": 53
+            "type": 15
           },
           {
             "name": "E",
             "type": 21
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
-      "id": 53,
-      "type": {
-        "def": {
-          "composite": {
-            "fields": [
-              {
-                "name": "chains",
-                "type": 4,
-                "typeName": "Vec<Chain>"
-              }
-            ]
-          }
-        },
-        "path": [
-          "index_executor",
-          "registry",
-          "Registry"
-        ]
-      }
-    },
-    {
-      "id": 54,
+      "id": 43,
       "type": {
         "def": {
           "variant": {
@@ -2430,7 +1750,7 @@
               {
                 "fields": [
                   {
-                    "type": 55
+                    "type": 44
                   }
                 ],
                 "index": 0,
@@ -2451,20 +1771,738 @@
         "params": [
           {
             "name": "T",
-            "type": 55
+            "type": 44
           },
           {
             "name": "E",
             "type": 18
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 44,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 45
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 45,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 46
+          }
+        }
+      }
+    },
+    {
+      "id": 46,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "id",
+                "type": 1,
+                "typeName": "TaskId"
+              },
+              {
+                "name": "worker",
+                "type": 1,
+                "typeName": "[u8; 32]"
+              },
+              {
+                "name": "status",
+                "type": 47,
+                "typeName": "TaskStatus"
+              },
+              {
+                "name": "source",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "amount",
+                "type": 24,
+                "typeName": "u128"
+              },
+              {
+                "name": "claim_nonce",
+                "type": 48,
+                "typeName": "Option<u64>"
+              },
+              {
+                "name": "claim_tx",
+                "type": 49,
+                "typeName": "Option<Vec<u8>>"
+              },
+              {
+                "name": "merged_steps",
+                "type": 50,
+                "typeName": "Vec<MultiStep>"
+              },
+              {
+                "name": "execute_txs",
+                "type": 55,
+                "typeName": "Vec<Vec<u8>>"
+              },
+              {
+                "name": "execute_index",
+                "type": 2,
+                "typeName": "u8"
+              },
+              {
+                "name": "sender",
+                "type": 8,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "recipient",
+                "type": 8,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "retry_counter",
+                "type": 2,
+                "typeName": "u8"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "task", "Task"]
+      }
+    },
+    {
+      "id": 47,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Actived"
+              },
+              {
+                "index": 1,
+                "name": "Initialized"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8,
+                    "typeName": "Vec<u8>"
+                  }
+                ],
+                "index": 2,
+                "name": "Claimed"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 2,
+                    "typeName": "u8"
+                  },
+                  {
+                    "type": 48,
+                    "typeName": "Option<u64>"
+                  }
+                ],
+                "index": 3,
+                "name": "Executing"
+              },
+              {
+                "index": 4,
+                "name": "Completed"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "task", "TaskStatus"]
+      }
+    },
+    {
+      "id": 48,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 35
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 35
+          }
+        ],
+        "path": ["Option"]
+      }
+    },
+    {
+      "id": 49,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          }
+        ],
+        "path": ["Option"]
+      }
+    },
+    {
+      "id": 50,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 51
+          }
+        }
+      }
+    },
+    {
+      "id": 51,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 52,
+                    "typeName": "Step"
+                  }
+                ],
+                "index": 0,
+                "name": "Single"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 54,
+                    "typeName": "Vec<Step>"
+                  }
+                ],
+                "index": 1,
+                "name": "Batch"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "step", "MultiStep"]
+      }
+    },
+    {
+      "id": 52,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "exe",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "source_chain",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "dest_chain",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "spend_asset",
+                "type": 8,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "receive_asset",
+                "type": 8,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "sender",
+                "type": 49,
+                "typeName": "Option<Vec<u8>>"
+              },
+              {
+                "name": "recipient",
+                "type": 8,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "spend_amount",
+                "type": 53,
+                "typeName": "Option<u128>"
+              },
+              {
+                "name": "origin_balance",
+                "type": 53,
+                "typeName": "Option<u128>"
+              },
+              {
+                "name": "nonce",
+                "type": 48,
+                "typeName": "Option<u64>"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "step", "Step"]
+      }
+    },
+    {
+      "id": 53,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 24
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 24
+          }
+        ],
+        "path": ["Option"]
+      }
+    },
+    {
+      "id": 54,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 52
+          }
+        }
       }
     },
     {
       "id": 55,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 8
+          }
+        }
+      }
+    },
+    {
+      "id": 56,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 57
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 57
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 57,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 58
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 58
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 58,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 46
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 46
+          }
+        ],
+        "path": ["Option"]
+      }
+    },
+    {
+      "id": 59,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 60
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 60
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 60,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 49
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 49
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 61,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 62
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 62
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 62,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 63
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 63
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 63,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "chains",
+                "type": 4,
+                "typeName": "Vec<Chain>"
+              }
+            ]
+          }
+        },
+        "path": ["index_executor", "registry", "Registry"]
+      }
+    },
+    {
+      "id": 64,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 65
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 65
+          },
+          {
+            "name": "E",
+            "type": 18
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 65,
       "type": {
         "def": {
           "variant": {
@@ -2500,13 +2538,11 @@
             "type": 21
           }
         ],
-        "path": [
-          "Result"
-        ]
+        "path": ["Result"]
       }
     },
     {
-      "id": 56,
+      "id": 66,
       "type": {
         "def": {
           "composite": {
@@ -2518,24 +2554,16 @@
             ]
           }
         },
-        "path": [
-          "ink_primitives",
-          "types",
-          "Hash"
-        ]
+        "path": ["ink_primitives", "types", "Hash"]
       }
     },
     {
-      "id": 57,
+      "id": 67,
       "type": {
         "def": {
           "variant": {}
         },
-        "path": [
-          "pink_extension",
-          "chain_extension",
-          "PinkExt"
-        ]
+        "path": ["pink_extension", "chain_extension", "PinkExt"]
       }
     }
   ],

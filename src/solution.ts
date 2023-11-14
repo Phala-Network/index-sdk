@@ -32,90 +32,79 @@ const $multiStep = $.taggedUnion('_tag', [
   $.variant('batch', $batch),
 ])
 
-// export const $solution = $.array($multiStep)
-export const $solution = $.array(
-  $.object(
-    $.field('exe', $.str),
-    $.field('sourceChain', $.str),
-    $.field('destChain', $.str),
-    $.field('spendAsset', $.str),
-    $.field('receiveAsset', $.str)
-  )
-)
+export const $solution = $.array($multiStep)
 
 export const processSolution = (
   client: Client,
   solution: Solution,
   recipient: string
 ): Hex => {
-  // FIXME: remove legacy solution when https://github.com/Phala-Network/index-contract/pull/92 is merged
-  return u8aToHex($solution.encode(solution))
-  // const mergedSteps: Array<Single | Batch> = []
-  // let batch: Batch = new Batch()
-  // const chainMap = client.chainMap
-  // const workerAccountInfo = client.getWorker()
+  const mergedSteps: Array<Single | Batch> = []
+  let batch: Batch = new Batch()
+  const chainMap = client.chainMap
+  const workerAccountInfo = client.getWorker()
 
-  // const pushSingleOrBatch = (item: StepWithRecipient | Batch) => {
-  //   if (Array.isArray(item)) {
-  //     if (item.length === 0) return
-  //     if (item.length === 1) {
-  //       item = item[0]
-  //     } else {
-  //       mergedSteps.push(item)
-  //       return
-  //     }
-  //   }
-  //   mergedSteps.push({_tag: 'single', ...item})
-  // }
+  const pushSingleOrBatch = (item: StepWithRecipient | Batch) => {
+    if (Array.isArray(item)) {
+      if (item.length === 0) return
+      if (item.length === 1) {
+        item = item[0]
+      } else {
+        mergedSteps.push(item)
+        return
+      }
+    }
+    mergedSteps.push({_tag: 'single', ...item})
+  }
 
-  // for (let i = 0; i < solution.length; i++) {
-  //   let stepRecipient: string
-  //   const step = solution[i]
-  //   const sourceChain = chainMap.get(step.sourceChain) as Chain
-  //   const destChain = chainMap.get(step.destChain) as Chain
-  //   const isBridge = step.sourceChain !== step.destChain
-  //   const isFromEvm = sourceChain.chainType === 'Evm'
-  //   const isToEvm = destChain.chainType === 'Evm'
+  for (let i = 0; i < solution.length; i++) {
+    let stepRecipient: string
+    const step = solution[i]
+    const sourceChain = chainMap.get(step.sourceChain) as Chain
+    const destChain = chainMap.get(step.destChain) as Chain
+    const isBridge = step.sourceChain !== step.destChain
+    const isFromEvm = sourceChain.chainType === 'Evm'
+    const isToEvm = destChain.chainType === 'Evm'
 
-  //   if (i === solution.length - 1) {
-  //     stepRecipient = recipient
-  //   } else if (isBridge) {
-  //     // If bridge to a EVM chain, asset should be send to Handler account to execute the reset of calls
-  //     stepRecipient = isToEvm
-  //       ? destChain.handlerContract
-  //       : workerAccountInfo.account32
-  //   } else {
-  //     // For non-bridge operations, because we don't batch call in Sub chains, so recipient should
-  //     // be worker account on source chain, or should be Handler address on source chain
-  //     stepRecipient = isToEvm
-  //       ? sourceChain.handlerContract
-  //       : workerAccountInfo.account32
-  //   }
-  //   const stepWithRecipient: StepWithRecipient = {
-  //     ...step,
-  //     recipient: stepRecipient,
-  //   }
+    if (i === solution.length - 1) {
+      stepRecipient = recipient
+    } else if (isBridge) {
+      // If bridge to a EVM chain, asset should be send to Handler account to execute the reset of calls
+      stepRecipient = isToEvm
+        ? destChain.handlerContract
+        : workerAccountInfo.account32
+    } else {
+      // For non-bridge operations, because we don't batch call in Sub chains, so recipient should
+      // be worker account on source chain, or should be Handler address on source chain
+      stepRecipient = isToEvm
+        ? sourceChain.handlerContract
+        : workerAccountInfo.account32
+    }
+    const stepWithRecipient: StepWithRecipient = {
+      ...step,
+      recipient: stepRecipient,
+    }
 
-  //   const isSameChain =
-  //     batch.length > 0 &&
-  //     step.sourceChain === batch[batch.length - 1].sourceChain
+    const isSameChain =
+      batch.length > 0 &&
+      step.sourceChain === batch[batch.length - 1].sourceChain
 
-  //   if (isFromEvm && (batch.length === 0 || isSameChain)) {
-  //     batch.push(stepWithRecipient)
-  //   } else {
-  //     pushSingleOrBatch(batch)
-  //     batch = new Batch()
-  //     if (isFromEvm) {
-  //       batch.push(stepWithRecipient)
-  //     } else {
-  //       pushSingleOrBatch(stepWithRecipient)
-  //     }
-  //   }
-  // }
+    if (isFromEvm && (batch.length === 0 || isSameChain)) {
+      batch.push(stepWithRecipient)
+    } else {
+      pushSingleOrBatch(batch)
+      batch = new Batch()
+      if (isFromEvm) {
+        batch.push(stepWithRecipient)
+      } else {
+        pushSingleOrBatch(stepWithRecipient)
+      }
+    }
+  }
 
-  // pushSingleOrBatch(batch)
+  pushSingleOrBatch(batch)
 
-  // return u8aToHex($solution.encode(mergedSteps))
+  return u8aToHex($solution.encode(mergedSteps))
 }
 
 const hexPattern = '^0x[0-9a-fA-F]+$'
