@@ -27,6 +27,7 @@ const solution = [
 const moonbeam = client.createEvmChain('Moonbeam')
 const asset = ASSETS.Moonbeam.WGLMR
 const amount = ethers.parseEther('1')
+const simulateResults = await client.simulateSolution(solution, recipient)
 const approvalTx = await moonbeam.getApproval(asset, wallet.address, amount)
 if (approvalTx) {
   await wallet.signTransaction(approvalTx)
@@ -49,6 +50,7 @@ const solution = [
   // JSON solution
 ]
 
+const simulateResults = await client.simulateSolution(solution, recipient)
 const phala = client.createPhalaChain('Phala')
 await phala.isReady // necessary for substrate chains
 const deposit = await phala.getDeposit(

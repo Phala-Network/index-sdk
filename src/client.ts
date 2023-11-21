@@ -147,8 +147,6 @@ export class Client {
     if (results == null) {
       throw new Error(`Failed to simulate solution`)
     }
-
-    return solution
   }
 
   async initialize() {

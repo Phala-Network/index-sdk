@@ -59,11 +59,9 @@ describe('Client', () => {
     // expect(await client.getSolution(taskId)).toMatchObject(solution)
     expect(client.initialized).toEqual(true)
     expect(client.chains.length).toBeGreaterThan(0)
-    console.log(
-      await client.simulateSolution(
-        solution,
-        '0x641017970d80738617e4e9b9b01d8d2ed5bc3d881a60e5105620abfbf5cb1331'
-      )
+    await client.simulateSolution(
+      solution,
+      '0x641017970d80738617e4e9b9b01d8d2ed5bc3d881a60e5105620abfbf5cb1331'
     )
   }, 30_000)
 
