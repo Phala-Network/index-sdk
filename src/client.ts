@@ -31,6 +31,19 @@ const contractId: Record<Environment, string> = {
     '0x95900f5b592524801a3e0b2eafadc7caa7527b2a20c792fc3d5d08ceab96314f',
 }
 
+export interface TaskSimulateResult {
+  actionExtraInfo: {
+    extraProtoFeeInUsd: number
+    constProtoFeeInUsd: number
+    percentageProtoFee: number
+    confirmTimeInSec: number
+  }
+  gasLimit: string | null
+  gasPrice: string | null
+  nativePriceInUsd: number
+  txFeeInUsd: number
+}
+
 export interface Options {
   environment?: Environment
   overrides?: {
@@ -111,6 +124,28 @@ export class Client {
     }
     if (solution == null) {
       throw new Error(`Failed to get solution`)
+    }
+
+    return solution
+  }
+
+  async simulateSolution(solution: Solution, recipient: string) {
+    this.assertReady()
+    console.log(processSolution(this, solution, recipient))
+    const {output} = await this.contract.query.simulateSolution(
+      this.pair.address,
+      {cert: this.cert},
+      this.getWorker().account32,
+      processSolution(this, solution, recipient)
+    )
+    let results
+    if (output.isOk) {
+      try {
+        return (output.asOk.toJSON() as any).ok as TaskSimulateResult[]
+      } catch (err) {}
+    }
+    if (results == null) {
+      throw new Error(`Failed to simulate solution`)
     }
 
     return solution

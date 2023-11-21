@@ -9,11 +9,32 @@ const taskId =
 
 const solution: Solution = [
   {
-    exe: 'moonbeam_stellaswap',
-    sourceChain: 'Moonbeam',
-    destChain: 'Moonbeam',
-    spendAsset: '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080',
-    receiveAsset: '0xFFFfFfFf63d24eCc8eB8a7b5D0803e900F7b6cED',
+    exe: 'ethereum_nativewrapper',
+    sourceChain: 'Ethereum',
+    destChain: 'Ethereum',
+    spendAsset: '0x0000000000000000000000000000000000000000',
+    receiveAsset: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  },
+  {
+    exe: 'ethereum_uniswapv2',
+    sourceChain: 'Ethereum',
+    destChain: 'Ethereum',
+    spendAsset: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    receiveAsset: '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
+  },
+  {
+    exe: 'ethereum_sygmabridge_to_phala',
+    sourceChain: 'Ethereum',
+    destChain: 'Phala',
+    spendAsset: '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
+    receiveAsset: '0x0000',
+  },
+  {
+    exe: 'phala_bridge_to_astar',
+    sourceChain: 'Phala',
+    destChain: 'Astar',
+    spendAsset: '0x0000',
+    receiveAsset: '0x010100cd1f',
   },
 ]
 
@@ -38,6 +59,12 @@ describe('Client', () => {
     // expect(await client.getSolution(taskId)).toMatchObject(solution)
     expect(client.initialized).toEqual(true)
     expect(client.chains.length).toBeGreaterThan(0)
+    console.log(
+      await client.simulateSolution(
+        solution,
+        '0x641017970d80738617e4e9b9b01d8d2ed5bc3d881a60e5105620abfbf5cb1331'
+      )
+    )
   }, 30_000)
 
   test('create ethereum', async () => {
