@@ -236,9 +236,71 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
-        "name": "raw",
-        "type": "bytes"
+        "components": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "callData",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "needSettle",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updateOffset",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updateLen",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "spendAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "spendAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "receiveAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "inputCall",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "callIndex",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Handler.Call[]",
+        "name": "calls",
+        "type": "tuple[]"
       }
     ],
     "name": "batchCall",
@@ -267,9 +329,76 @@
         "type": "bytes32"
       },
       {
-        "internalType": "bytes",
-        "name": "raw",
-        "type": "bytes"
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "callData",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "needSettle",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updateOffset",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updateLen",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "spendAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "spendAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "receiveAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "inputCall",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "callIndex",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Handler.Call[]",
+        "name": "calls",
+        "type": "tuple[]"
       }
     ],
     "name": "claimAndBatchCall",
@@ -321,6 +450,19 @@
     "name": "drop",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "feeAccount",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -476,6 +618,13 @@
   },
   {
     "inputs": [],
+    "name": "pause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "paused",
     "outputs": [
       {
@@ -503,6 +652,19 @@
   {
     "inputs": [],
     "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_feeAccount",
+        "type": "address"
+      }
+    ],
+    "name": "setFeeAccount",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -555,6 +717,13 @@
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unpause",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
