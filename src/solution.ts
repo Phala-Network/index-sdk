@@ -68,16 +68,9 @@ export const processSolution = (
 
     if (i === solution.length - 1) {
       stepRecipient = recipient
-    } else if (isBridge) {
-      // If bridge to a EVM chain, asset should be send to Handler account to execute the reset of calls
-      stepRecipient = isToEvm
-        ? destChain.handlerContract
-        : workerAccountInfo.account32
     } else {
-      // For non-bridge operations, because we don't batch call in Sub chains, so recipient should
-      // be worker account on source chain, or should be Handler address on source chain
       stepRecipient = isToEvm
-        ? sourceChain.handlerContract
+        ? workerAccountInfo.account20
         : workerAccountInfo.account32
     }
     const stepWithRecipient: StepWithRecipient = {

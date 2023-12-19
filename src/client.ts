@@ -131,7 +131,6 @@ export class Client {
 
   async simulateSolution(solution: Solution, recipient: string) {
     this.assertReady()
-    console.log(processSolution(this, solution, recipient))
     const {output} = await this.contract.query.simulateSolution(
       this.pair.address,
       {cert: this.cert},
