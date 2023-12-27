@@ -62,7 +62,6 @@ export const processSolution = (
     const step = solution[i]
     const sourceChain = chainMap.get(step.sourceChain) as Chain
     const destChain = chainMap.get(step.destChain) as Chain
-    const isBridge = step.sourceChain !== step.destChain
     const isFromEvm = sourceChain.chainType === 'Evm'
     const isToEvm = destChain.chainType === 'Evm'
 

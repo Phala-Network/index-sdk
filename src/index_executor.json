@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xec4a6720fe6a45eaf6b74be0afa35db584c98926f2faa25ee84db7fb8ef71143",
+    "hash": "0x36f7b7f0185ec57f7d42c2af80be4b1c11ed6fbd2c32bd61e406f1d8b017fc1a",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.69.0",
     "build_info": {
@@ -1164,6 +1164,10 @@
               {
                 "index": 22,
                 "name": "ExecutorNotPaused"
+              },
+              {
+                "index": 23,
+                "name": "MissingAssetInfo"
               }
             ]
           }
