@@ -5,6 +5,9 @@ export const ASSETS = {
     USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
     USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
     PHA: '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
+    MATIC: '0x455e53CBB86018Ac2B8092FdCd39d8444aFFC3F6',
+    BNB: '0x418d75f65a02b3d53b2418fb8e1fe493759c7605',
+    ARB: '0xb50721bcf8d664c30412cfbc6cf7a15145234ad1',
   },
   Moonbeam: {
     GLMR: '0x0000000000000000000000000000000000000802',
@@ -24,6 +27,7 @@ export const ASSETS = {
   Astar: {
     ASTR: '0x0000',
     PHA: '0x010100cd1f',
+    GLMR: '0x03010200511f040a',
   },
   AstarEvm: {
     ASTR: '0x0000000000000000000000000000000000000000',
@@ -36,4 +40,22 @@ export const ASSETS = {
   Polkadot: {
     DOT: '0x0000',
   },
+  Assethub: {},
+  Solana: {
+    SOL: '0x0000000000000000000000000000000000000000',
+  },
+  Cosmos: {},
+  Avalanche: {},
+  BNBChain: {
+    BNB: '0x0000000000000000000000000000000000000000',
+    SOL: '0xfa54ff1a158b5189ebba6ae130ced6bbd3aea76e',
+  },
+  Near: {},
+  Arbitrum: {ARB: '0xf823c3cd3cebe0a1fa952ba88dc9eef8e0bf46ad'},
+  Polygon: {
+    MATIC: '0x0000000000000000000000000000000000001010',
+    SOL: '0xd93f7e271cb87c23aaa73edc008a79646d1f9912',
+  },
+  Gnosis: {},
+  Starknet: {},
 }
