@@ -22,6 +22,7 @@ export const ASSETS = {
     PHA: '0x0000',
   },
   Astar: {
+    ASTR: '0x0000',
     PHA: '0x010100cd1f',
   },
   AstarEvm: {
