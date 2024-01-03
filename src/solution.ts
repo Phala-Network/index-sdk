@@ -62,15 +62,16 @@ export const processSolution = (
     const step = solution[i]
     const sourceChain = chainMap.get(step.sourceChain) as Chain
     const destChain = chainMap.get(step.destChain) as Chain
+    const isBridge = step.sourceChain !== step.destChain
     const isFromEvm = sourceChain.chainType === 'Evm'
     const isToEvm = destChain.chainType === 'Evm'
 
     if (i === solution.length - 1) {
       stepRecipient = recipient
+    } else if (isBridge) {
+      stepRecipient = workerAccountInfo[isToEvm ? 'account20' : 'account32']
     } else {
-      stepRecipient = isToEvm
-        ? workerAccountInfo.account20
-        : workerAccountInfo.account32
+      stepRecipient = destChain.handlerContract
     }
     const stepWithRecipient: StepWithRecipient = {
       ...step,
@@ -95,6 +96,8 @@ export const processSolution = (
   }
 
   pushSingleOrBatch(batch)
+
+  console.log('mergedSteps', mergedSteps)
 
   return u8aToHex($solution.encode(mergedSteps))
 }
