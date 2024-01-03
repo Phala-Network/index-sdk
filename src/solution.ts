@@ -97,8 +97,6 @@ export const processSolution = (
 
   pushSingleOrBatch(batch)
 
-  console.log('mergedSteps', mergedSteps)
-
   return u8aToHex($solution.encode(mergedSteps))
 }
 
