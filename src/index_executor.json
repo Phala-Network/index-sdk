@@ -1,10 +1,10 @@
 {
   "source": {
-    "hash": "0x05209bd04ab062d5d7e76edafccfdabe00cbddfa708923a0a54a0aa733729254",
+    "hash": "0x02b71e898bf69abfdee3633abaebfbd8f587475048831a717f46dc1bb02eca82",
     "language": "ink! 4.2.1",
     "compiler": "rustc 1.77.0-nightly",
     "build_info": {
-      "build_mode": "Debug",
+      "build_mode": "Release",
       "cargo_contract_version": "3.2.0",
       "rust_toolchain": "nightly-aarch64-apple-darwin",
       "wasm_opt_settings": {
@@ -177,6 +177,62 @@
           "type": 21
         },
         "selector": "0x2941ef18"
+      },
+      {
+        "args": [
+          {
+            "label": "chain",
+            "type": {
+              "displayName": ["String"],
+              "type": 3
+            }
+          },
+          {
+            "label": "endpoint",
+            "type": {
+              "displayName": ["String"],
+              "type": 3
+            }
+          },
+          {
+            "label": "indexer_url",
+            "type": {
+              "displayName": ["String"],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "update_chain_info",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 21
+        },
+        "selector": "0xf0e67abd"
+      },
+      {
+        "args": [
+          {
+            "label": "asset",
+            "type": {
+              "displayName": ["crate", "registry", "Asset"],
+              "type": 12
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "register_asset",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 21
+        },
+        "selector": "0x763156d2"
       },
       {
         "args": [],
