@@ -28,7 +28,7 @@ const contractId: Record<Environment, string> = {
   [Environment.MAINNET]:
     '0x271f04685ff7dfab0e08957a1dbbb1cbc205125e7a04a538be364535b8c449f9',
   [Environment.TESTNET]:
-    '0x61781c26e8e6d8d4ba96f1d9b817f721baedd0741e72c595699095ee81476180',
+    '0xeb8f729db89ca604ab51eb84506fc7000c61682fde7ee0c8a570148f15f309c6',
 }
 
 export interface TaskSimulateResult {
