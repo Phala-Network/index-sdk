@@ -1,6 +1,6 @@
 import syncFetch from 'sync-fetch'
 
-interface Asset {
+export interface Asset {
   name: string
   symbol: string
   decimals: number
