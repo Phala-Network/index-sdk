@@ -1,8 +1,8 @@
 import {ethers} from 'ethers'
 import {afterEach, beforeEach, describe, expect, test, vi} from 'vitest'
-import {ASSETS} from './assets'
 import {Client, Environment} from './client'
 import {Solution} from './types'
+import {lookupAsset} from './asset'
 
 const taskId =
   '0x0000000000000000000000000000000000000000000000000000000000000003'
@@ -69,15 +69,19 @@ describe('Client', () => {
     vi.spyOn(Client.prototype, 'uploadSolution').mockResolvedValue()
     await client.isReady
     const ethereum = client.createEvmChain('Ethereum')
-    const asset = ASSETS.Ethereum.PHA
+    const asset = lookupAsset('Ethereum', 'PHA')
     const account = '0x0000000000000000000000000000000000000000'
     const amount = ethers.parseEther('1')
-    const approvalTx = await ethereum.getApproval(asset, account, amount)
+    const approvalTx = await ethereum.getApproval(
+      asset.location,
+      account,
+      amount
+    )
 
     expect(approvalTx?.data).toMatchSnapshot()
 
     const deposit = await ethereum.getDeposit(
-      asset,
+      asset.location,
       amount,
       '0x0000000000000000000000000000000000000000',
       solution
@@ -92,7 +96,7 @@ describe('Client', () => {
     const phala = client.createPhalaChain('Phala')
     await phala.isReady
     const phalaTx = await phala.getDeposit(
-      ASSETS.Phala.PHA,
+      lookupAsset('Phala', 'PHA').location,
       1_000_000_000_000n,
       '0x6c5bA91642F10282b576d91922Ae6448C9d52f4E',
       solution
