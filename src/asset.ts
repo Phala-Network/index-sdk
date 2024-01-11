@@ -11,17 +11,16 @@ export interface Asset {
 const match = (a: string, b: string): boolean =>
   a.toLowerCase() === b.toLowerCase()
 
-export const lookupAsset = (chain: string, symbol: string): Asset => {
+export const lookupAsset = (chain: string, symbolOrLocation: string): Asset => {
   const registry = syncFetch(
     'https://raw.githubusercontent.com/Phala-Network/index-contract/closed-beta/scripts/src/registry.json'
   ).json()
 
   const asset = registry.assets.find(
-    (x: Asset) => match(x.chainName, chain) && match(x.symbol, symbol)
+    (x: Asset) =>
+      match(x.chainName, chain) &&
+      (match(x.symbol, symbolOrLocation) || match(x.location, symbolOrLocation))
   )
-  if (asset == null) {
-    throw new Error(`Asset not found: ${chain} ${symbol}`)
-  }
 
   return asset
 }
