@@ -15,15 +15,21 @@ export const lookupAsset = (
   chain: string,
   symbolOrLocation: string
 ): Asset | undefined => {
-  const registry = syncFetch(
-    'https://raw.githubusercontent.com/Phala-Network/index-contract/closed-beta/scripts/src/registry.json'
-  ).json() as {assets: Asset[]}
+  const chains = syncFetch(
+    'https://github.com/Phala-Network/index-registry/releases/latest/download/chains.json'
+  ).json() as [{name: string; assets: Omit<Asset, 'chainName'>[]}]
 
-  const asset = registry.assets.find(
-    (x) =>
-      match(x.chainName, chain) &&
-      (match(x.symbol, symbolOrLocation) || match(x.location, symbolOrLocation))
-  )
-
-  return asset
+  const matchedChain = chains.find((x) => match(x.name, chain))
+  if (matchedChain != null) {
+    const matchedAsset = matchedChain.assets.find(
+      (x) =>
+        match(x.symbol, symbolOrLocation) || match(x.location, symbolOrLocation)
+    )
+    if (matchedAsset != null) {
+      return {
+        ...matchedAsset,
+        chainName: matchedChain.name,
+      }
+    }
+  }
 }
