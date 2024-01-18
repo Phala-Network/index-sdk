@@ -16,7 +16,7 @@ export const lookupAsset = (
   symbolOrLocation: string
 ): Asset | undefined => {
   const chains = syncFetch(
-    'https://github.com/Phala-Network/index-registry/releases/latest/download/chains.json'
+    'https://index-gpt-server.vercel.app/api/registry/chains'
   ).json() as [{name: string; assets: Omit<Asset, 'chainName'>[]}]
 
   const matchedChain = chains.find((x) => match(x.name, chain))
